@@ -81,7 +81,7 @@ var pd =function(result){
             var ageTd = document.createElement("td");
             var genderTd = document.createElement("td");
             //각각의 td에는 v 내부의 데이터의 요소들을 삽입
-            //console.log(v) << 데이터가 어떤식으로 되있는지 궁금하면 주석 지우고 이거 콘솔로 확인해봐
+            console.log(v) //<< 데이터가 어떤식으로 되있는지 궁금하면 주석 지우고 이거 콘솔로 확인해봐
             latTd.innerText = v["latitude"];
             longTd.innerText = v["longitude"];
             phoneTd.innerText = v["phoneNumber"];

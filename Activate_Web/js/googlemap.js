@@ -18,19 +18,20 @@
   var myLatlng = new google.maps.LatLng(Y_point, X_point); 
   var mapOptions = { zoom: zoomLevel, center: myLatlng, mapTypeId: google.maps.MapTypeId.ROADMAP } 
   var map = new google.maps.Map(document.getElementById('map_ma'), mapOptions); 
-  //var marker = new google.maps.Marker({ position: myLatlng, map: map, title: markerTitle }); 
+  var marker2 = new google.maps.Marker({ position: myLatlng, map: map, title: markerTitle }); 
   var marker = new google.maps.Circle({ // 각각 파라미터의 기능이 뭔지 잘 모르게음 너가 잘 해석해바바ㅇㅋ?
       strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
+      strokeOpacity: 1.0,
       strokeWeight: 2,
       fillColor: "#FF0000",
-      fillOpacity: 0.35,
+      fillOpacity: 1.0,
       map,
-      center: { lat: 37.582490343481204, lng: 127.00932883867772 },
+      center: { lat: 37.582290343481211, lng: 127.00932813867732 },
       radius: 5,
     });
   var infowindow = new google.maps.InfoWindow( { content: contentString, maxWizzzdth: markerMaxWidth } );
   google.maps.event.addListener(marker, 'click', function() { infowindow.open(map, marker); }); 
+  google.maps.event.addListener(marker2, 'click', function() { infowindow.open(map, marker2); }); 
   }
 
 

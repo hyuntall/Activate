@@ -70,8 +70,7 @@ var pd =function(result){
         //console.log(result) << 데이터가 어떤식으로 되있는지 궁금하면 주석 지우고 이거 콘솔로 확인해봐
         //데이터를 최신순으로 나열하고싶으므로 뒤집기
         result = result.reverse();
-        //데이터가 여러개가 시간순으로 배열에 저장되어있음
-        //배열의 요소들 각각 하나하나 v라는 이름으로 꺼내어 반복
+        //데이터가 여러개가 시간순//배열의 요소들 각각 하나하나 v라는 이름으로 꺼내어 반복으로 배열에 저장되어있음
         result.forEach(function(v){
             //표 만들고
             var tr = document.createElement("tr");
@@ -81,7 +80,7 @@ var pd =function(result){
             var ageTd = document.createElement("td");
             var genderTd = document.createElement("td");
             //각각의 td에는 v 내부의 데이터의 요소들을 삽입
-            console.log(v) //<< 데이터가 어떤식으로 되있는지 궁금하면 주석 지우고 이거 콘솔로 확인해봐
+            //console.log(v) //<< 데이터가 어떤식으로 되있는지 궁금하면 주석 지우고 이거 콘솔로 확인해봐
             latTd.innerText = v["latitude"];
             longTd.innerText = v["longitude"];
             phoneTd.innerText = v["phoneNumber"];

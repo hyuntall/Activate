@@ -5,7 +5,22 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Main from './Main';
 import SignUp from './SignUp';
 import { Image } from 'react-native';
+
+let phoneNumber = null;
+
+function setPhoneNumber(data){
+  phoneNumber = data;
+}
+
+function getPhoneNumber(){
+  return phoneNumber;
+}
+export {setPhoneNumber, getPhoneNumber};
+
 class HomeScreen extends React.Component {
+  onChangeInput = event => {
+    setPhoneNumber(event);
+  };
   static navigationOptions = {
     title: "Login"
   };
@@ -16,7 +31,8 @@ class HomeScreen extends React.Component {
       
       <View style={styles.container}>
         <Image source={require('./assets/행복한동네.png')} />
-        <TextInput placeholder="Phone Number" style={styles.textInput}/>
+        <TextInput placeholder="Phone Number" style={styles.textInput}
+        onChangeText={this.onChangeInput} />
         <TextInput placeholder="password" style={styles.textInput}/>
         <View>
         <TouchableOpacity style={styles.button} onPress={() => navigate("Main", {name: "Main"})}>
@@ -38,7 +54,8 @@ class MainScreen extends React.Component {
   };
   render() {
     const {navigate} = this.props.navigation;
-    return < Main phoneNumber="12313123" age="11" gender="M"/>;
+    console.log(getPhoneNumber());
+    return < Main phoneNumber={getPhoneNumber()} age="11" gender="M"/>;
   }
 }
 
@@ -49,7 +66,13 @@ class SignUpScreen extends React.Component{
   };
   render() {
     const {navigate} = this.props.navigation;
-    return < SignUp/>;
+    return (
+    <View style={styles.container}>
+    < SignUp/>
+    <TouchableOpacity style={styles.button} onPress={(props) => { this.props.navigation.goBack(null) }}>
+      <Text>로그인 화면으로</Text>
+    </TouchableOpacity>
+    </View>);
   }
 }
 

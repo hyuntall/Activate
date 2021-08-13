@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { StyleSheet } from "react-native";
-
+import { TouchableOpacity } from "react-native-gesture-handler";
 function SignUp() {
     return (
         <View style={styles.container}>
@@ -15,9 +15,13 @@ function SignUp() {
             <TextInput style={styles.textInput} placeholder="Gender"/>
             <TextInput style={styles.textInput} placeholder="Birth Day"/>
             <TextInput style={styles.textInput} placeholder="보호자 번호"/>
+            <TouchableOpacity style={styles.button} >
+              <Text>회원가입</Text>
+            </TouchableOpacity>
             </View>
         </View>);
 }
+
 
 const styles = StyleSheet.create({
     container: {

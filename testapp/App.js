@@ -7,7 +7,7 @@ import SignUp from './SignUp';
 import { Image } from 'react-native';
 
 let phoneNumber = null;
-
+//텍스트창에 입력할 휴대폰 번호 전역변수로 지정
 function setPhoneNumber(data){
   phoneNumber = data;
 }

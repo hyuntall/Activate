@@ -15,11 +15,11 @@ export default class Login extends React.Component {
           onChangeText={this.onChangeInput} />
           <TextInput placeholder="password" style={styles.textInput}/>
           <View>
-          <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-            <Text>로그인</Text>
+          <TouchableOpacity style={styles.button1} onPress={this.handleLogin}>
+          <Text style = {{color: 'white'}}>LOGIN</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
-            <Text>회원가입</Text>
+          <TouchableOpacity style={styles.button2} onPress={() => this.props.navigation.navigate('SignUp')}>
+            <Text style = {{color: 'white'}}>휴대폰번호로 시작하기</Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -29,23 +29,33 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+      backgroundColor: "#4641D9",
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
     },
     textInput: {
-      height: 40,
-      width: '90%',
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginTop: 8
+      height: 50,
+      width: '50%',
+      borderColor: '#D1B2FF',
+      borderWidth: 2,
+      marginTop: 10
     },
-    button: {
-        width: 200,
-        height: 80,
-        backgroundColor: "#123abc",
-        borderRadius: 4.5,
+    button1: {
+        width: 150,
+        height: 65,
+        backgroundColor: "#B5B2FF",
+        borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
       },
+      button2: {
+        width: 150,
+        height: 65,
+        backgroundColor: "#4641D9",
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+      }
+
   })

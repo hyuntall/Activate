@@ -44,7 +44,6 @@ export default class SignUp extends React.Component{
     return (
       <View style={styles.container}>
           <View >
-          <Text>회원가입 화면 입니다.</Text>
           {this.state.errorMessage && 
           <Text style={{color: 'red'}}>
           {this.state.errorMessage} </Text>}
@@ -63,7 +62,7 @@ export default class SignUp extends React.Component{
             <Text>회원가입</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
-            <Text>돌아가기</Text>
+            <Text>이전</Text>
           </TouchableOpacity>
           </View>
       </View>);
@@ -92,15 +91,15 @@ const styles = StyleSheet.create({
       textInput: {
         height: 40,
         width: '90%',
-        borderColor: 'gray',
+        borderColor: 'purple',
         borderWidth: 1,
-        marginTop: 8
+        marginTop: 8,
       },
       button: {
-        width: 200,
-        height: 80,
-        backgroundColor: "#123abc",
-        borderRadius: 4.5,
+        width: 150,
+        height: 65,
+        backgroundColor: "#B5B2FF",
+        borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
     },

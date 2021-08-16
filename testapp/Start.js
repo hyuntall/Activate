@@ -12,15 +12,12 @@ export default class Login extends React.Component {
     return (
         <View style={styles.container}>
           <Image source={require('./assets/행복한동네.png')} />
-          <TextInput placeholder="Phone Number" style={styles.textInput}
-          onChangeText={this.onChangeInput} />
-          <TextInput placeholder="password" style={styles.textInput}/>
           <View>
-          <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
             <Text>로그인</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
-            <Text>돌아가기</Text>
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
+            <Text>회원가입</Text>
           </TouchableOpacity>
           </View>
         </View>

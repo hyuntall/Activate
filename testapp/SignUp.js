@@ -17,7 +17,6 @@ export default class SignUp extends React.Component{
   };
 
   handleSignUp = () => {
-    console.log(fireDB().ref('user/' + this.state.phoneNumber).once('value').length);
     try{
       fireDB().ref('user/' + this.state.phoneNumber).set(
         {
@@ -33,7 +32,14 @@ export default class SignUp extends React.Component{
 
   putUserData = () => {
     if(this.state.phoneNumber.length>0 && this.state.password.length>0){
-      this.handleSignUp();
+      fireDB().ref('user/'+this.state.phoneNumber).once('value').then(data => {
+        if(data.val().password.length==0){
+          this.handleSignUp();
+        }
+        else{
+          alert("이미 가입정보가 존재합니다.")
+        }
+      })
     }
     else{
       alert("정보를 모두 입력해주세요");

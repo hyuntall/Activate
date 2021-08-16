@@ -3,6 +3,7 @@ import Loading from './Loading'
 import SignUp from './SignUp'
 import Login from './Login'
 import Main from './Main'
+import Start from './Start'
 import React from 'react'
 
 
@@ -11,12 +12,13 @@ import React from 'react'
 const MainNavigator = createSwitchNavigator(
   {
     Loading: {screen: Loading},
+    Start: {screen: Start},
     SignUp: {screen: SignUp},
     Login: {screen: Login},
     Main: {screen: Main}
   },
   {
-    initialRouteName: 'Login'
+    initialRouteName: 'Start'
   }
 );
 const App = createAppContainer(MainNavigator);

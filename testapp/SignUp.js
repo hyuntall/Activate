@@ -33,7 +33,7 @@ export default class SignUp extends React.Component{
   putUserData = () => {
     if(this.state.phoneNumber.length>0 && this.state.password.length>0){
       fireDB().ref('user/'+this.state.phoneNumber).once('value').then(data => {
-        if(data.val().password.length==0){
+        if(data.val()==null){
           this.handleSignUp();
         }
         else{

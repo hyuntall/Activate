@@ -7,14 +7,15 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 
-export default function Main({phoneNumber, age, gender}) {
+export default function Main(props) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
+  const { navigation } = props;
+  const phoneNumber = navigation.getParam("phoneNumber");
   // activate_1 dynamoDB로 데이터를 보내기 위한 api
-
 
   useEffect(() => { // 처음 실행됐을 때
     (async () => {
@@ -24,7 +25,7 @@ export default function Main({phoneNumber, age, gender}) {
         setErrorMsg('Permission to access location was denied');
         return;
       }
-
+      console.log(phoneNumber);
       // 현재 위치를 받아온다.
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
@@ -80,8 +81,8 @@ export default function Main({phoneNumber, age, gender}) {
       <Text style={styles.paragraph}>{latitude}</Text>
       <Text style={styles.paragraph}>{longitude}</Text>
       <Text style={styles.paragraph}>{phoneNumber}</Text>
-      <Text style={styles.paragraph}>나이 : {age}</Text>
-      <Text style={styles.paragraph}>성별 : {gender}</Text>
+      <Text style={styles.paragraph}>나이 : {props.age}</Text>
+      <Text style={styles.paragraph}>성별 : {props.gender}</Text>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={getLocation} >
         <Text style={styles.buttonText}>위치 정보 전송</Text>
       </TouchableOpacity>

@@ -14,6 +14,7 @@ export default class SignUp extends React.Component{
   state = {
     phoneNumber: "",
     password: "",
+    confirmPass: "",
   };
 
   handleSignUp = () => {
@@ -29,7 +30,14 @@ export default class SignUp extends React.Component{
       alert(e);
     }
   };
-
+  confirmPassword = () => {
+    if(this.state.password == this.state.confirmPass){
+      this.putUserData();
+    }
+    else{
+      alert("비밀번호를 다시 확인해주세요");
+    }
+  }
   putUserData = () => {
     if(this.state.phoneNumber.length>0 && this.state.password.length>0){
       fireDB().ref('user/'+this.state.phoneNumber).once('value').then(data => {
@@ -59,12 +67,14 @@ export default class SignUp extends React.Component{
           <TextInput style={styles.textInput} placeholder="password"
           onChangeText={password => this.setState({password})}
           value={this.state.password}/>
-          <TextInput style={styles.textInput} placeholder="confrim pass"/>
+          <TextInput style={styles.textInput} placeholder="confrim pass"
+          onChangeText={confirmPass => this.setState({confirmPass})}
+          value={this.state.confirmPass}/>
           <TextInput style={styles.textInput} placeholder="Name"/>
           <TextInput style={styles.textInput} placeholder="Gender"/>
           <TextInput style={styles.textInput} placeholder="Birth Day"/>
           <TextInput style={styles.textInput} placeholder="보호자 번호"/>
-          <TouchableOpacity style={styles.button} onPress={this.putUserData}>
+          <TouchableOpacity style={styles.button} onPress={this.confirmPassword}>
             <Text>회원가입</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>

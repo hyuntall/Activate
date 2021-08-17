@@ -8,7 +8,7 @@ import React from 'react'
 
 
 //클래스 간의 화면 전환을 위해 네비게이터 선언
-//앱이 시작하면 Login 클래스로 이동함.
+//앱이 시작하면 Start 클래스로 이동함.
 const MainNavigator = createSwitchNavigator(
   {
     Loading: {screen: Loading},

@@ -2,94 +2,105 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import { Alert } from "react-native";
 import * as Location from 'expo-location';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import axios from 'axios';
+import { DeviceMotion } from 'expo-sensors';
 
 
-export default function Main(props) {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
-  const { navigation } = props;
-  const phoneNumber = navigation.getParam("phoneNumber");
-  // activate_1 dynamoDB로 데이터를 보내기 위한 api
-
-  useEffect(() => { // 처음 실행됐을 때
-    (async () => {
-      // 위치정보 권한을 요청한다.
-      let { status } = await Location.requestForegroundPermissionsAsync();
+export default class Main extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중..."};
+    url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
+  }
+  
+  async componentDidMount() { //컴포넌트가 시작되면 안에 함수를 호출한다는 뜻
+    let { motion } = await DeviceMotion.isAvailableAsync()
+    //디바이스 모션 사용 권한 받아온다.
+      if (motion !== 'granted'){
+        setErrorMsg('motion detection was denied');
+      }
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    //위치 권한 받아온다.
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
         return;
       }
-      console.log(phoneNumber);
-      // 현재 위치를 받아온다.
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      setLatitude(String(location['coords']['latitude']));
-      setLongitude(String(location['coords']['longitude']));
-    })();
-  }, []);
+    this.setState({text: "위치 정보 받아오는 중..."});
+    let location = await Location.getCurrentPositionAsync({});
+    //위치 정보 받아온다.
+    this.setState({latitude: String(location['coords']['latitude']), 
+    longitude: String(location['coords']['longitude'])});
+    //받아온 위치 정보 새로 세팅
+    this.setState({text: "성공!"});
+  }
 
-  //추가로 현재 위치를 받아오는 함수
-  const getLocation = async () => {
-  
+  async getLocation(){
     try {
       // 현재 위치 정보를 받아온다.
-      const location = await Location.getCurrentPositionAsync();
-      setLocation(location)
+      let location = await Location.getCurrentPositionAsync();
       //dynamoDB에 위치정보를 문자열로 받기로 설정해놨기 때문에 문자열로 변환
       // 숫자값으로 바꿀지 고민중...
-      setLatitude(String(location['coords']['latitude']));
-      setLongitude(String(location['coords']['longitude']));
+      this.setState({latitude: String(location['coords']['latitude']), 
+      longitude: String(location['coords']['longitude'])});
       //현재 위치를 dynamoDB로 전송하는 함수 실행
-      postData();
+      return 1;
     } catch (e) {
       Alert.alert("위치정보를 가져올 수 없습니다.");
+      return -1
     }
-    
   };
+
   // dynamoDB로 데이터를 전송하는 함수
-  const postData = async () => {
-    //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
-    const data = {
-      "phoneNumber": "01093532680",
-      "age": "24",
-      "gender": "M",
-      "latitude": latitude,
-      "longitude": longitude,
-    }
-    try{
-      //api에 post 요청.(데이터 전송한다는 의미)
-      const response = await axios.post(url, data);
-    } catch (e){
-      console.log(e);
+  async postData(phoneNumber){
+    this.setState({text: "위치 정보 받아오는 중..."});
+    if(this.getLocation()){ //getLocation함수에서 성공적으로 위치 정보를 받아 왔다면
+      //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
+      const data = {
+        "phoneNumber": phoneNumber,
+        "age": "24",
+        "gender": "M",
+        "latitude": this.state.latitude,
+        "longitude": this.state.longitude,
+      }
+      try{
+        this.setState({text: "데이터 전송하는 중..."});
+        //api에 post 요청.(데이터 전송한다는 의미)
+        const response = await axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        console.log(response);
+        this.setState({text: "성공!"});
+      } catch (e){
+        alert("데이터를 전송할 수 없습니다.");
+        console.log(e);
+      }
+    }else{
+      this.setState({text: "위치 정보 받기 실패"});
     }
   }
-
-  let text = '현재 위치정보';
-  if (errorMsg) { // 이거 지울까말까 고민중
-    text = errorMsg;
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{text}</Text>
-      <Text style={styles.paragraph}>{latitude}</Text>
-      <Text style={styles.paragraph}>{longitude}</Text>
+  render(){
+    DeviceMotion.addListener((listener) => {
+      if(listener.acceleration.z > 20){
+        console.log("z축 흔들림 감지!")
+        //이건 아직 해보는 중
+      }
+    })
+    const { navigation } = this.props;
+    const phoneNumber = navigation.getParam("phoneNumber");
+    console.log(phoneNumber)
+    return (
+      <View style={styles.container}>
+      <Text style={styles.title}>{this.state.text}</Text>
+      <Text style={styles.paragraph}>{this.state.latitude}</Text>
+      <Text style={styles.paragraph}>{this.state.longitude}</Text>
       <Text style={styles.paragraph}>{phoneNumber}</Text>
-      <Text style={styles.paragraph}>나이 : {props.age}</Text>
-      <Text style={styles.paragraph}>성별 : {props.gender}</Text>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={getLocation} >
+      <Text style={styles.paragraph}>나이 : </Text>
+      <Text style={styles.paragraph}>성별 : </Text>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.postData(phoneNumber)} >
         <Text style={styles.buttonText}>위치 정보 전송</Text>
       </TouchableOpacity>
     </View>
-  );
+    )
+  }
 }
-
 
 const styles = StyleSheet.create({
   container: {

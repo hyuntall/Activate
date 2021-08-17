@@ -4,10 +4,6 @@ import React from 'react';
 
 
 export default class Login extends React.Component {
-    state = {phoneNumber: '', password: ''};
-    handleLogin = () => {
-        console.log(this.state);
-    }
   render() {
     return (
         <View style={styles.container}>

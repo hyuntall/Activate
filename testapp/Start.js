@@ -1,20 +1,20 @@
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import { Image } from 'react-native';
 import React from 'react';
+import LoginButton from './LoginButton';
+import SignupButton from './SignupButton';
 
 
 export default class Login extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <Image source={require('./assets/행복한동네.png')} />
-          <View>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
-            <Text>로그인</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
-            <Text>회원가입</Text>
-          </TouchableOpacity>
+          <View style={styles.header}></View>
+          <View style={styles.title}><Image source={require('./assets/행복한동네.png')} /></View>
+          <View style={styles.content}></View>
+          <View style={styles.footer}>
+            <LoginButton />
+            <SignupButton />
           </View>
         </View>
       );
@@ -24,35 +24,32 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 20,
+    backgroundColor: 'purple',
   },
-      title: {
-        fontSize: 50,
-        color: 'blue'
-      },
-      paragraph: {
-        fontSize: 30,
-        color: 'black'
-      },
-      
-      buttonText: {
-        color: "white",
-        fontSize: 30,
-      },
-      textInput: {
-        height: 40,
-        width: '90%',
-        borderColor: 'purple',
-        borderWidth: 1,
-        marginTop: 8,
-      },
-      button: {
-        width: 150,
-        height: 65,
+  header:{
+    width:"100%",
+    height:'20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor : 'gray',
+  },
+  title: {
+    width:'100%',
+    height: '25%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'orange',
+  },
+  content:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'pink',
+  },
+    footer: {
+        width: '100%',
+        height: '25%',
         backgroundColor: "#B5B2FF",
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
     },
-  });
+  })

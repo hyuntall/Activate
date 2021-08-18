@@ -5,6 +5,8 @@ import Login from './Login'
 import Main from './Main'
 import Start from './Start'
 import React from 'react'
+import LoginButton from './LoginButton'
+import SignupButton from './SignupButton'
 
 
 //클래스 간의 화면 전환을 위해 네비게이터 선언
@@ -15,7 +17,9 @@ const MainNavigator = createSwitchNavigator(
     Start: {screen: Start},
     SignUp: {screen: SignUp},
     Login: {screen: Login},
-    Main: {screen: Main}
+    Main: {screen: Main},
+    LoginButton: {screen: Login},
+    SignupButton: {screen: SignUp},
   },
   {
     initialRouteName: 'Start'

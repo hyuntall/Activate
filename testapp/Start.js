@@ -1,8 +1,6 @@
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import { Image } from 'react-native';
 import React from 'react';
-import LoginButton from './LoginButton';
-import SignupButton from './SignupButton';
 
 
 export default class Login extends React.Component {
@@ -13,8 +11,12 @@ export default class Login extends React.Component {
           <View style={styles.title}><Image source={require('./assets/행복한동네.png')} /></View>
           <View style={styles.content}></View>
           <View style={styles.footer}>
-            <LoginButton />
-            <SignupButton />
+            <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+            <Text>로그인</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
+            <Text>회원가입</Text>
+          </TouchableOpacity>
           </View>
         </View>
       );
@@ -52,4 +54,12 @@ const styles = StyleSheet.create({
         height: '25%',
         backgroundColor: "#B5B2FF",
     },
+    button:{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom : 30,
+      borderRadius: 50,
+      backgroundColor: 'red',
+  },
   })

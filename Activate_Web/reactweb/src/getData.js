@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import React from "react";
 
-const getData = () => {
+const GetData = () => {
   const [apiData, setApiData] = useState();
 
     useEffect(() => {// 컴포넌트가 실행되면
@@ -21,4 +21,4 @@ const getData = () => {
     return apiData; // 컴포넌트의 리턴값으로 apiData
 };
 
-export default getData;
+export default GetData;

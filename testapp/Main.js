@@ -34,7 +34,7 @@ export default class Main extends React.Component{
     this.setState({text: "성공!"});
   }
 
-  async getLocation(){
+  async getLocation(){ // setinterval사용하여 주기적으로 위치 정보 얻어오도록 수정할 계획.
     try {
       // 현재 위치 정보를 받아온다.
       let location = await Location.getCurrentPositionAsync();
@@ -66,11 +66,9 @@ export default class Main extends React.Component{
       //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
       data.latitude = this.state.latitude;
       data.longitude = this.state.longitude;
-      console.log(this.state.latitude);
       try{
         this.setState({text: "데이터 전송하는 중..."});
         //api에 post 요청.(데이터 전송한다는 의미)
-        console.log(data);
         const response = await axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
         console.log(response)
         this.setState({text: "불안모드 활성화!"});
@@ -86,9 +84,7 @@ export default class Main extends React.Component{
         console.log("z축 흔들림 감지!");
         this.setState({danger: "1", text: "충격감지!"});
         data.danger = this.state.danger;
-        console.log(data);
         const response2 = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
-        console.log(response2)
       }
     })
   }

@@ -60,6 +60,8 @@ export default class SignUp extends React.Component{
   firstComponent(){ //첫번째 가입 요소, hide변수가 true이면 첫번째 가입요소가 표시됨.
     return (
       <View style={styles.container}>
+        <View style={styles.header}></View>
+        <View style={styles.title}>
         <TextInput style={styles.textInput} placeholder="Phone Number"
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           value={this.state.phoneNumber}/>
@@ -69,14 +71,18 @@ export default class SignUp extends React.Component{
           <TextInput style={styles.textInput} placeholder="confrim pass"
           onChangeText={confirmPass => this.setState({confirmPass})}
           value={this.state.confirmPass}/>
-          <TouchableOpacity style={styles.button} onPress={() => this.setState({hide: false})}>
+          </View>
+          <View style={styles.content}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.setState({hide: false})}>
             {/*다음 버튼을 누르면 hide변수를 false로 바꿔서 첫번째 요소는 숨기고 두번째 요소 표시*/}
             <Text>다음</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
             {/* Home 버튼을 누르면 Start 클래스로 이동 */}
             <Text>Home</Text>
           </TouchableOpacity>
+          </View>
+          <View style={styles.footer}></View>
       </View>
     )
   }
@@ -84,10 +90,15 @@ export default class SignUp extends React.Component{
   secondComponent(){//두번째 가입 요소, hide 변수가 false일 때 표시됨
     return(
       <View style={styles.container}>
+        <View style={styles.header}></View>
+        <View style={styles.title}>
         <TextInput style={styles.textInput} placeholder="Name"/>
-          <TextInput style={styles.textInput} placeholder="Gender"/>
-          <TextInput style={styles.textInput} placeholder="Birth Day"/>
-          <TextInput style={styles.textInput} placeholder="보호자 번호"/>
+        <TextInput style={styles.textInput} placeholder="Gender"/>
+        <TextInput style={styles.textInput} placeholder="Birth Day"/>
+        <TextInput style={styles.textInput} placeholder="보호자 번호"/>
+        </View>
+          <View style={styles.content}></View>
+          <View style={styles.footer}>
           <TouchableOpacity style={styles.button} onPress={this.confirmPassword}>
             <Text>회원가입</Text>
           </TouchableOpacity>
@@ -99,10 +110,10 @@ export default class SignUp extends React.Component{
             {/*버튼을 누르면 로그인 화면으로 이동 */}
             <Text>로그인 화면</Text>
           </TouchableOpacity>
+          </View>
       </View>
     )
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -125,35 +136,48 @@ export default class SignUp extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
-      title: {
-        fontSize: 50,
-        color: 'blue'
-      },
-      paragraph: {
-        fontSize: 30,
-        color: 'black'
-      },
-      
-      buttonText: {
-        color: "white",
-        fontSize: 30,
-      },
-      textInput: {
-        height: 40,
-        width: '90%',
-        borderColor: 'purple',
-        borderWidth: 1,
-        marginTop: 8,
-      },
-      button: {
-        width: 150,
-        height: 65,
+  header:{
+    width:"100%",
+    height:'20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor : 'gray',
+  },
+  title: {
+    width:'100%',
+    height: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'orange',
+  },buttonText: {
+    color: "white",
+    fontSize: 30,
+  },
+  textInput: {
+    height: 40,
+    width: '90%',
+    borderColor: 'purple',
+    borderWidth: 1,
+    marginTop: 8,
+  },
+  content:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'pink',
+  },
+      footer: {
+        width: '100%',
+        height: '25%',
         backgroundColor: "#B5B2FF",
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
     },
-  });
+      button: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom : 30,
+        borderRadius: 50,
+        backgroundColor: 'red',
+      },
+  })

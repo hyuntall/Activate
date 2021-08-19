@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width:'100%',
-    height: '25%',
+    height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'orange',

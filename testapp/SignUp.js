@@ -173,11 +173,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#B5B2FF",
     },
       button: {
-        flex: 1,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom : 30,
         borderRadius: 50,
         backgroundColor: 'red',
+        width: 50,
       },
   })

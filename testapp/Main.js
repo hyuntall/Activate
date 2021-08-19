@@ -9,16 +9,16 @@ import { DeviceMotion } from 'expo-sensors';
 export default class Main extends React.Component{
   constructor(props){
     super(props)
-    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중..."};
-    url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
+    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: null};
+    //url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
   }
   
   async componentDidMount() { //컴포넌트가 시작되면 안에 함수를 호출한다는 뜻
     let { motion } = await DeviceMotion.isAvailableAsync()
     //디바이스 모션 사용 권한 받아온다.
-      if (motion !== 'granted'){
-        setErrorMsg('motion detection was denied');
-      }
+    //  if (motion !== 'granted'){
+    //    setErrorMsg('motion detection was denied');
+    //  }
     let { status } = await Location.requestForegroundPermissionsAsync();
     //위치 권한 받아온다.
       if (status !== 'granted') {
@@ -51,23 +51,26 @@ export default class Main extends React.Component{
   };
 
   // dynamoDB로 데이터를 전송하는 함수
-  async postData(phoneNumber){
+  async signalMode(phoneNumber){
+    let data = {
+      "phoneNumber": phoneNumber,
+      "age": "24",
+      "gender": "M",
+      "latitude": this.state.latitude,
+      "longitude": this.state.longitude,
+      "danger": this.state.danger
+    };
     this.setState({text: "위치 정보 받아오는 중..."});
     if(this.getLocation()){ //getLocation함수에서 성공적으로 위치 정보를 받아 왔다면
       //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
-      const data = {
-        "phoneNumber": phoneNumber,
-        "age": "24",
-        "gender": "M",
-        "latitude": this.state.latitude,
-        "longitude": this.state.longitude,
-      }
+      data.latitude = this.state.latitude;
+      data.longitude = this.state.longitude;
       try{
         this.setState({text: "데이터 전송하는 중..."});
         //api에 post 요청.(데이터 전송한다는 의미)
         const response = await axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
         console.log(response);
-        this.setState({text: "성공!"});
+        this.setState({text: "불안모드 활성화!"});
       } catch (e){
         alert("데이터를 전송할 수 없습니다.");
         console.log(e);
@@ -75,14 +78,24 @@ export default class Main extends React.Component{
     }else{
       this.setState({text: "위치 정보 받기 실패"});
     }
-  }
-  render(){
     DeviceMotion.addListener((listener) => {
       if(listener.acceleration.z > 20){
-        console.log("z축 흔들림 감지!")
-        //이건 아직 해보는 중
+        console.log("z축 흔들림 감지!");
+        this.setState({danger: true, text: "충격감지!"});
+        data.danger = this.state.danger;
+        console.log(data);
+        const response = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
       }
     })
+  }
+
+  removeSignal(){
+    DeviceMotion.removeAllListeners();
+    this.setState({danger: true, text: "일반모드"});
+  }
+
+  render(){
+    
     const { navigation } = this.props;
     const phoneNumber = navigation.getParam("phoneNumber");
     console.log(phoneNumber)
@@ -94,8 +107,11 @@ export default class Main extends React.Component{
       <Text style={styles.paragraph}>{phoneNumber}</Text>
       <Text style={styles.paragraph}>나이 : </Text>
       <Text style={styles.paragraph}>성별 : </Text>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.postData(phoneNumber)} >
-        <Text style={styles.buttonText}>위치 정보 전송</Text>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(phoneNumber)} >
+        <Text style={styles.buttonText}>불안모드</Text>
+      </TouchableOpacity>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >
+        <Text style={styles.buttonText}>신호 중지</Text>
       </TouchableOpacity>
     </View>
     )

@@ -6,7 +6,7 @@ import {
   Route,
   Link
 }from 'react-router-dom';
-import GetData from "./getData";
+import getData from "./getData";
 
 //GoogleMap 호출할 때 props로 GetData.js의 리턴값을 넣어줬음
 function App() {
@@ -24,7 +24,7 @@ function App() {
 
         <Route path ="/Safety" exact>
         <div>
-          <GoogleApiWrapper apiData = {GetData()}/>
+          <GoogleApiWrapper apiData = {getData()}/>
           </div>
         </Route>
 

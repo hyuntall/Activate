@@ -9,7 +9,7 @@ import { DeviceMotion } from 'expo-sensors';
 export default class Main extends React.Component{
   constructor(props){
     super(props)
-    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: null};
+    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: "0"};
     //url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
   }
   
@@ -43,6 +43,7 @@ export default class Main extends React.Component{
       this.setState({latitude: String(location['coords']['latitude']), 
       longitude: String(location['coords']['longitude'])});
       //현재 위치를 dynamoDB로 전송하는 함수 실행
+      console.log(this.state);
       return 1;
     } catch (e) {
       Alert.alert("위치정보를 가져올 수 없습니다.");
@@ -65,11 +66,13 @@ export default class Main extends React.Component{
       //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
       data.latitude = this.state.latitude;
       data.longitude = this.state.longitude;
+      console.log(this.state.latitude);
       try{
         this.setState({text: "데이터 전송하는 중..."});
         //api에 post 요청.(데이터 전송한다는 의미)
+        console.log(data);
         const response = await axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
-        console.log(response);
+        console.log(response)
         this.setState({text: "불안모드 활성화!"});
       } catch (e){
         alert("데이터를 전송할 수 없습니다.");
@@ -81,17 +84,18 @@ export default class Main extends React.Component{
     DeviceMotion.addListener((listener) => {
       if(listener.acceleration.z > 20){
         console.log("z축 흔들림 감지!");
-        this.setState({danger: true, text: "충격감지!"});
+        this.setState({danger: "1", text: "충격감지!"});
         data.danger = this.state.danger;
         console.log(data);
-        const response = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        const response2 = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        console.log(response2)
       }
     })
   }
 
   removeSignal(){
     DeviceMotion.removeAllListeners();
-    this.setState({danger: true, text: "일반모드"});
+    this.setState({danger: 0, text: "일반모드"});
   }
 
   render(){

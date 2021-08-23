@@ -84,9 +84,35 @@ export default class Main extends React.Component{
         console.log("z축 흔들림 감지!");
         this.setState({danger: "1", text: "충격감지!"});
         data.danger = this.state.danger;
-        const response2 = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        this.timeout = setTimeout(() =>{
+          this.postDanger(data);
+          }, 10000);
+        Alert.alert(
+          "충격감지",
+          "10초 후 신호를 전송합니다.",
+          [
+            {
+              text: "즉시 보내기", 
+              onPress: () => {clearTimeout(this.timeout), this.postDanger(data)}
+            },
+            {
+              text: "취소",
+              onPress: () => {clearTimeout(this.timeout),
+                this.setState({danger: "1", text: "충격감지!"}),
+                data.danger = this.state.danger}
+            }
+          ]
+        )
       }
     })
+    
+    
+  }
+
+  postDanger(data){
+        console.log("data", data);
+        const response2 = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        console.log(response2);
   }
 
   removeSignal(){

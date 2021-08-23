@@ -40,35 +40,50 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
-      title: {
-        fontSize: 50,
-        color: 'blue'
-      },
-      paragraph: {
-        fontSize: 30,
-        color: 'black'
-      },
-      
-      buttonText: {
-        color: "white",
-        fontSize: 30,
-      },
-      textInput: {
-        height: 40,
-        width: '90%',
-        borderColor: 'purple',
-        borderWidth: 1,
-        marginTop: 8,
-      },
-      button: {
-        width: 150,
-        height: 65,
-        backgroundColor: "#B5B2FF",
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
+  header:{
+    width:"100%",
+    height:'10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor : '#F6F6F6',
+  },
+  title: {
+    width:'100%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'#F6F6F6',
+  },
+  content:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F6F6F6',
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 30,
+  },
+  textInput: {
+    height: 40,
+    width: '90%',
+    borderColor: '#006E00',
+    borderWidth: 1,
+    borderRadius: 15,
+    marginTop: 8,
+  },
+      footer: {
+        width: '100%',
+        height: '25%',
+        backgroundColor: "#F6F6F6",
     },
+      button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom : 30,
+        borderRadius: 50,
+        height: '53%',
+        backgroundColor: '#FFE400',
+      },
   });

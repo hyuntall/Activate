@@ -61,8 +61,9 @@ export default class SignUp extends React.Component{
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <View style={styles.title}>
-        <TextInput style={styles.textInput} placeholder="Phone Number"
+        <View style={styles.title}></View>
+          <View style={styles.content}>
+          <TextInput style={styles.textInput} placeholder="Phone Number"
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           value={this.state.phoneNumber}/>
           <TextInput style={styles.textInput} placeholder="password"
@@ -72,7 +73,7 @@ export default class SignUp extends React.Component{
           onChangeText={confirmPass => this.setState({confirmPass})}
           value={this.state.confirmPass}/>
           </View>
-          <View style={styles.content}>
+          <View style={styles.footer}>
           <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.setState({hide: false})}>
             {/*다음 버튼을 누르면 hide변수를 false로 바꿔서 첫번째 요소는 숨기고 두번째 요소 표시*/}
             <Text>다음</Text>
@@ -82,7 +83,6 @@ export default class SignUp extends React.Component{
             <Text>Home</Text>
           </TouchableOpacity>
           </View>
-          <View style={styles.footer}></View>
       </View>
     )
   }
@@ -91,14 +91,14 @@ export default class SignUp extends React.Component{
     return(
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <View style={styles.title}>
-        <TextInput style={styles.textInput} placeholder="Name"/>
-        <TextInput style={styles.textInput} placeholder="Gender"/>
-        <TextInput style={styles.textInput} placeholder="Birth Day"/>
-        <TextInput style={styles.textInput} placeholder="보호자 번호"/>
-        </View>
-          <View style={styles.content}></View>
-          <View style={styles.footer}>
+        <View style={styles.title}></View>
+        <View style={styles.content}>
+          <TextInput style={styles.textInput} placeholder="Name"/>
+          <TextInput style={styles.textInput} placeholder="Gender"/>
+          <TextInput style={styles.textInput} placeholder="Birth Day"/>
+          <TextInput style={styles.textInput} placeholder="보호자 번호"/>
+          </View>
+        <View style={styles.footer}>
           <TouchableOpacity style={styles.button} onPress={this.confirmPassword}>
             <Text>회원가입</Text>
           </TouchableOpacity>
@@ -139,46 +139,47 @@ const styles = StyleSheet.create({
   },
   header:{
     width:"100%",
-    height:'20%',
+    height:'10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : 'gray',
+    backgroundColor : '#F6F6F6',
   },
   title: {
     width:'100%',
-    height: '20%',
+    height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'orange',
-  },buttonText: {
+    backgroundColor:'#F6F6F6',
+  },
+  content:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F6F6F6',
+  },
+  buttonText: {
     color: "white",
     fontSize: 30,
   },
   textInput: {
     height: 40,
     width: '90%',
-    borderColor: 'purple',
+    borderColor: '#006E00',
     borderWidth: 1,
+    borderRadius: 15,
     marginTop: 8,
-  },
-  content:{
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'pink',
   },
       footer: {
         width: '100%',
         height: '25%',
-        backgroundColor: "#B5B2FF",
+        backgroundColor: "#F6F6F6",
     },
       button: {
-        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom : 30,
         borderRadius: 50,
-        backgroundColor: 'red',
-        width: 50,
+        height: '53%',
+        backgroundColor: '#FFE400',
       },
   })

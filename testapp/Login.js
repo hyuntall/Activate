@@ -46,20 +46,20 @@ const styles = StyleSheet.create({
     height:'10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : '#F6F6F6',
+    backgroundColor : '#FFFFFF',
   },
   title: {
     width:'100%',
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#F6F6F6',
+    backgroundColor:'#FFFFFF',
   },
   content:{
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#FFFFFF',
   },
   buttonText: {
     color: "white",
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: '90%',
-    borderColor: '#006E00',
+    borderColor: '#747474',
     borderWidth: 1,
     borderRadius: 15,
     marginTop: 8,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
       footer: {
         width: '100%',
         height: '25%',
-        backgroundColor: "#F6F6F6",
+        backgroundColor: "#FFFFFF",
     },
       button: {
         alignItems: 'center',
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
         marginBottom : 30,
         borderRadius: 50,
         height: '53%',
-        backgroundColor: '#FFE400',
+        backgroundColor: '#FFFF6C',
       },
   });

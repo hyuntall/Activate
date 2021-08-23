@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     height:'20%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : '#FFE400',
+    backgroundColor : '#FFFFFF',
   },
   title: {
     flex: 1,
@@ -40,18 +40,18 @@ const styles = StyleSheet.create({
     height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#FFE400',
+    backgroundColor:'#FFFFFF',
   },
   content:{
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFE400',
+    backgroundColor: '#FFFFFF',
   },
     footer: {
         width: '100%',
         height: '25%',
-        backgroundColor: "#FFE400",
+        backgroundColor: "#FFFFFF",
     },
     button:{
       flex: 1,
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginBottom : 30,
       borderRadius: 50,
-      backgroundColor: '#006E00',
+      backgroundColor: '#FFFF6C',
   },
   })

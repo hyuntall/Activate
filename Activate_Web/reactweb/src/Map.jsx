@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
-
+import GetData from "./GetData";
+import axios from "axios";
 export class MapAPI extends Component {
   state = {
     activeMarker: {},
     selectedPlace: {},
-    showingInfoWindow: false
+    showingInfoWindow: false,
+    apiData: null
   };
   
   onMarkerClick = (props, marker) =>
@@ -28,9 +30,29 @@ export class MapAPI extends Component {
         });
     };
 
+    componentWillMount(){ //Map 컴포넌트가 render 되기 전에 먼저 API 데이터 불러옴
+      this.getAPI();
+    }
+
+    getAPI = async () => { // API 데이터를 불러오는 함수
+      try {
+        const response = await axios.get(//api로부터 get 요청
+            'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/get/act1'
+        );
+        //console.log(response.data)
+        this.setState({apiData: response.data}); //받아온 데이터를 state 내의 apiData로 설정
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    a = setInterval(() => { //일단 이름은 대충 a 라 지었고, 10초 주기로 getAPI 함수를 호출
+      this.getAPI();
+    }, 10000);
+    
   render() {
-    const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
-    const display = apiData && apiData.map((item) => 
+    //const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
+    const display = this.state.apiData && this.state.apiData.map((item) => 
 
     <Marker 
     name = "warning place"

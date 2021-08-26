@@ -24,7 +24,7 @@ function App() {
 
         <Route path ="/Safety" exact>
         <div>
-          <GoogleApiWrapper apiData = {GetData()}/>
+          <GoogleApiWrapper/>
           </div>
         </Route>
 

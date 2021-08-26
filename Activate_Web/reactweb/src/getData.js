@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import React from "react";
-
+//애물단지가 되어버린 GetData 함수...
 const GetData = () => {
   const [apiData, setApiData] = useState();
 

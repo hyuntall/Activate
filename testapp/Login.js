@@ -10,8 +10,9 @@ export default class Login extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <Image source={require('./assets/행복한동네.png')} />
-
+          <View style={styles.header}></View>
+          <View style={styles.title}><Image source={require('./assets/행복한동네.png')} /></View>
+          <View style={styles.content}>
           <TextInput placeholder="Phone Number" style={styles.textInput}
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           value={this.state.phoneNumber}/>
@@ -20,8 +21,8 @@ export default class Login extends React.Component {
           onChangeText={password => this.setState({password})}
           value={this.state.password}
           secureTextEntry={true}/>
-
-          <View>
+          </View>
+          <View style={styles.footer}>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Loading',
           { phoneNumber: this.state.phoneNumber, password: this.state.password, type: "login"})}>
           {/* 로그인 버튼 클릭 시 로딩화면으로 이동, TextInput에서 입력받은 전화번호와 패스워드도 함께 전달*/}
@@ -43,14 +44,15 @@ const styles = StyleSheet.create({
   },
   header:{
     width:"100%",
-    height:'10%',
+    height:'20%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor : '#FFFFFF',
   },
   title: {
+    flex:1,
     width:'100%',
-    height: '10%',
+    height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'#FFFFFF',
@@ -79,11 +81,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF",
     },
       button: {
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom : 30,
         borderRadius: 50,
-        height: '53%',
         backgroundColor: '#FFFF6C',
       },
   });

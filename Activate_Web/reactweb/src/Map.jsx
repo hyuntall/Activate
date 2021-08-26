@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
-import GetData from "./GetData";
+
 import axios from "axios";
 export class MapAPI extends Component {
   state = {
@@ -55,7 +55,9 @@ export class MapAPI extends Component {
     const display = this.state.apiData && this.state.apiData.map((item) => 
 
     <Marker 
-    name = "warning place"
+    phoneNumber = {item["phoneNumber"]}
+    age = {item["age"]}
+    danger = {item["danger"]}
     onClick={this.onMarkerClick}
     key={item["timestamp"]} width='60px'
     icon={{ url: require("./장희선.png").default,
@@ -95,8 +97,12 @@ export class MapAPI extends Component {
             onClose={this.onInfoWindowClose}
             visible={this.state.showingInfoWindow}
           >
-            <div style={divstyle}>
-              {this.state.selectedPlace.name}
+             <div style={divstyle}>
+              <p>휴대폰 번호 : 
+              {this.state.selectedPlace.phoneNumber}</p>
+              <br></br>
+              <p>나이 : {this.state.selectedPlace.age}</p>
+              <p>위험신호 유무  : {this.state.selectedPlace.danger}</p>
             </div>
           </InfoWindow>
         </Map>

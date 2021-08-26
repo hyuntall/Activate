@@ -139,6 +139,9 @@ export default class Main extends React.Component{
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >
         <Text style={styles.buttonText}>신호 중지</Text>
       </TouchableOpacity>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Start')} >
+        <Text style={styles.buttonText}>로그아웃</Text>
+      </TouchableOpacity>
     </View>
     )
   }

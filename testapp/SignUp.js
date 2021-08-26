@@ -4,6 +4,11 @@ import { TextInput } from "react-native-gesture-handler";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { fireBase, fireDB, getFireDB } from "./firebase";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export default class SignUp extends React.Component{
   constructor(props) { // 클래스 호출 시 파이어베이스 호출
@@ -63,12 +68,15 @@ export default class SignUp extends React.Component{
         <View style={styles.header}></View>
         <View style={styles.title}></View>
           <View style={styles.content}>
+            <MaterialCommunityIcons name="cellphone" size={24} color="black"/>
           <TextInput style={styles.textInput} placeholder="Phone Number"
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           value={this.state.phoneNumber}/>
+          <AntDesign name="lock" size={27} color="black" />
           <TextInput style={styles.textInput} placeholder="password"
           onChangeText={password => this.setState({password})}
           value={this.state.password}/>
+          <AntDesign name="lock" size={27} color="black" />
           <TextInput style={styles.textInput} placeholder="confrim pass"
           onChangeText={confirmPass => this.setState({confirmPass})}
           value={this.state.confirmPass}/>
@@ -93,9 +101,12 @@ export default class SignUp extends React.Component{
         <View style={styles.header}></View>
         <View style={styles.title}></View>
         <View style={styles.content}>
+          <Ionicons name="person-circle-outline" size={25} color="black" />
           <TextInput style={styles.textInput} placeholder="Name"/>
           <TextInput style={styles.textInput} placeholder="Gender"/>
+          <FontAwesome name="birthday-cake" size={24} color="black" />
           <TextInput style={styles.textInput} placeholder="Birth Day"/>
+          <Feather name="phone" size={24} color="black" />
           <TextInput style={styles.textInput} placeholder="보호자 번호"/>
           </View>
         <View style={styles.footer}>
@@ -178,8 +189,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom : 30,
-        borderRadius: 50,
-        height: '53%',
-        backgroundColor: '#FFE400',
+        borderRadius: 70,
+        height: "50%", 
+        margin: -8,
+        backgroundColor: '#FFFF6C',
       },
   })

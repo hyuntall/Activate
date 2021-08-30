@@ -14,7 +14,7 @@ export default class Category extends React.Component {
           <View style={styles.header}></View>
           <View style={styles.title}></View>
           <View style={styles.content}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Main'),{ phoneNumber: phoneNumber}}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Main',{ phoneNumber: phoneNumber})}>
           {/* 불안신호 보내러 가기*/}
             <Text>불안신호</Text>
           </TouchableOpacity>

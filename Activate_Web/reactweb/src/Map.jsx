@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
 import Popup from './Popup.js'
+import ScrollBox from "./ScrollBox.js";
 
 export class MapAPI extends Component {
   state = {
@@ -107,6 +108,7 @@ export class MapAPI extends Component {
             </div>
           </InfoWindow>
         </Map>
+        <ScrollBox data={this.state.apiData}/>
         {this.state.selectedPlace.danger === 1 &&
         <Popup/>}
 

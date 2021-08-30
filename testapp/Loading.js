@@ -10,14 +10,14 @@ export default class Loading extends React.Component {
   //componentDidMount() {
   //    firebase.auth().onAuthStateChanged(user => {
   //        console.log(user);
-  //      this.props.navigation.navigate(user ? 'Main' : 'SignUp')
+  //      this.props.navigation.navigate(user ? 'Category' : 'SignUp')
   //    })
   //}
   handleLogin(phoneNumber, password){ //로그인 검사 함수
     console.log(phoneNumber, password)
     fireDB().ref('user/'+phoneNumber).once('value').then(data => { //입력받은 전화번호에 해당하는 패스워드와 로그인시 입력한 패스워드가 일치하면
       if(data.val()!=null && data.val().password == password){
-        this.props.navigation.navigate('Main',{ phoneNumber: phoneNumber}) // 메인 클래스로 이동
+        this.props.navigation.navigate('Category' ,{ phoneNumber: phoneNumber}) // 카테고리 클래스로 이동
       }
       else{
         alert("로그인에 실패했습니다.")

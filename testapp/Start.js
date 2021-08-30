@@ -9,15 +9,15 @@ export default class Login extends React.Component {
         <View style={styles.container}>
           <View style={styles.header}></View>
           <View style={styles.title}><Image source={require('./assets/행복한동네.png')} /></View>
-          <View style={styles.content}></View>
-          <View style={styles.footer}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+          <View style={styles.content}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button1} onPress={() => this.props.navigation.navigate('Login')}>
             <Text>로그인</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button2} onPress={() => this.props.navigation.navigate('SignUp')}>  
             <Text>회원가입</Text>
           </TouchableOpacity>
           </View>
+          <View style={styles.footer}></View>
         </View>
       );
   }
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   header:{
     width:"100%",
-    height:'20%',
+    height:'10%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor : '#FFFFFF',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     width:'100%',
-    height: '20%',
+    height: '30%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'#FFFFFF',
@@ -48,17 +48,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
-    footer: {
-        width: '100%',
-        height: '25%',
-        backgroundColor: "#FFFFFF",
+  button1:{
+    width: '100%',
+    height:'25%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom : 30,
+    borderRadius: 50,
+    backgroundColor: '#FFFF6C',
+},
+  button2:{
+    width: '100%',
+    height:'25%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom : 30,
+    borderRadius: 50,
+    backgroundColor: '#FFFF6C',
+},
+  footer: {
+    width: '100%',
+    height: '15%',
+    backgroundColor: "#FFFFFF",
     },
-    button:{
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom : 30,
-      borderRadius: 50,
-      backgroundColor: '#FFFF6C',
-  },
   })

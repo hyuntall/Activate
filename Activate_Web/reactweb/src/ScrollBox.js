@@ -22,7 +22,6 @@ class ScrollBox extends Component{
         var day = date.getDate().toString()
         var hour = date.getHours().toString()
         var minutes = date.getMinutes().toString()
-        console.log(year + month + day + hour + minutes)
         return year+"년 " + month+"월 " + day+"일 " + hour+":" + minutes
     }
     render(){
@@ -33,7 +32,6 @@ class ScrollBox extends Component{
             fontSize:15
         }
         const apiData = this.props.data;
-        console.log(this.props.data);
         const text = apiData && apiData.map((item) =>
             <>
                 <div style={largeText}>{this.date(item['time'])}에 불안 신호가 감지되었습니다.</div>

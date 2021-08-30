@@ -9,7 +9,8 @@ export class MapAPI extends Component {
     activeMarker: {},
     selectedPlace: {},
     showingInfoWindow: false,
-    apiData: null
+    apiData: null,
+    danger: 0
   };
   
   onMarkerClick = (props, marker) =>
@@ -43,6 +44,7 @@ export class MapAPI extends Component {
         );
         //console.log(response.data)
         this.setState({apiData: response.data}); //받아온 데이터를 state 내의 apiData로 설정
+        
       } catch (e) {
         console.log(e);
       }
@@ -50,6 +52,7 @@ export class MapAPI extends Component {
 
     a = setInterval(() => { //일단 이름은 대충 a 라 지었고, 10초 주기로 getAPI 함수를 호출
       this.getAPI();
+      console.log(this.state.danger)
     }, 10000);
     
   render() {
@@ -79,7 +82,7 @@ export class MapAPI extends Component {
       width: '100%',
       height: '50%',
     };
-   
+    
     //구글맵 태그 사이에 display 함수 넣어줌
     return (
       <div className='MapAPI'>
@@ -109,8 +112,7 @@ export class MapAPI extends Component {
           </InfoWindow>
         </Map>
         <ScrollBox data={this.state.apiData}/>
-        {this.state.selectedPlace.danger === 1 &&
-        <Popup/>}
+        <Popup data={this.state.apiData}/>
 
       </div>
     );

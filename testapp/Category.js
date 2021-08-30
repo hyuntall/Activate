@@ -2,19 +2,35 @@ import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-nativ
 import { Image } from 'react-native';
 import React from 'react';
 
-
-export default class Login extends React.Component {
+export default class Category extends React.Component {
+    constructor(props) {
+      super(props);
+    }
   render() {
     return (
         <View style={styles.container}>
           <View style={styles.header}></View>
-          <View style={styles.title}><Image source={require('./assets/행복한동네.png')} /></View>
+          <View style={styles.title}></View>
           <View style={styles.content}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button1} onPress={() => this.props.navigation.navigate('Login')}>
-            <Text>로그인</Text>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Main')}>
+          {/* 불안신호 보내러 가기*/}
+            <Text>불안신호</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button2} onPress={() => this.props.navigation.navigate('SignUp')}>  
-            <Text>회원가입</Text>
+          <TouchableOpacity>
+            {/*환경사진 찍으러 가기*/}
+            <Text>환경 건의</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            {/*지역 홈페이지*/}
+            <Text>우리 동네 공지</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            {/*내 프로필 정보 변경*/}
+            <Text>내 정보</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            {/*어플 설정*/}
+            <Text>어플 설정</Text>
           </TouchableOpacity>
           </View>
           <View style={styles.footer}></View>
@@ -48,27 +64,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
-  button1:{
-    width: '100%',
-    height:'25%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom : 30,
-    borderRadius: 50,
-    backgroundColor: '#FFFF6C',
-},
-  button2:{
-    width: '100%',
-    height:'25%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom : 30,
-    borderRadius: 50,
-    backgroundColor: '#FFFF6C',
-},
   footer: {
     width: '100%',
     height: '15%',
     backgroundColor: "#FFFFFF",
-    },
+    },  
   })

@@ -4,6 +4,7 @@ import SignUp from './SignUp'
 import Login from './Login'
 import Main from './Main'
 import Start from './Start'
+import Category from './Category'
 import React from 'react'
 
 
@@ -15,7 +16,8 @@ const MainNavigator = createSwitchNavigator(
     Start: {screen: Start},
     SignUp: {screen: SignUp},
     Login: {screen: Login},
-    Main: {screen: Main}
+    Main: {screen: Main},
+    Category: {screen: Category}
   },
   {
     initialRouteName: 'Start'

@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
-
 import axios from "axios";
+import Popup from './Popup.js'
+
 export class MapAPI extends Component {
   state = {
     activeMarker: {},
@@ -106,7 +107,9 @@ export class MapAPI extends Component {
             </div>
           </InfoWindow>
         </Map>
-          
+        {this.state.selectedPlace.danger === 1 &&
+        <Popup/>}
+
       </div>
     );
   }

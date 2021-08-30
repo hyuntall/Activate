@@ -6,7 +6,7 @@ import {
   Route,
   Link
 }from 'react-router-dom';
-import GetData from "./getData.js";
+import Popup from "./Popup.js"
 
 //GoogleMap 호출할 때 props로 GetData.js의 리턴값을 넣어줬음
 function App() {
@@ -19,6 +19,7 @@ function App() {
         <Route path="/" exact>
           <div> 
             <img id="logo" src="/img/our.jpg" width="190" height="256"/>
+            
           </div>
         </Route>
 
@@ -28,8 +29,10 @@ function App() {
           </div>
         </Route>
 
-        <Route path="/Environments">
-        <h1>environments</h1>
+        <Route path="/Environment" exact>
+        <div>
+          <Popup/>
+        </div>
         </Route>
         
         </Switch>

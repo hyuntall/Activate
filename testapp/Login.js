@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { Image } from 'react-native';
 import React from 'react';
 
@@ -7,6 +7,15 @@ export default class Login extends React.Component {
       super(props);
     }
     state = {phoneNumber: '', password: ''};
+    login = () => {
+      if(this.state.phoneNumber.length>0){
+        this.props.navigation.navigate('Loading',
+          { phoneNumber: this.state.phoneNumber, password: this.state.password, type: "login"})
+      }
+      else{
+        alert("아이디를 입력하세요.");
+      }
+    }
   render() {
     return (
         <View style={styles.container}>
@@ -23,8 +32,7 @@ export default class Login extends React.Component {
           secureTextEntry={true}/>
           </View>
           <View style={styles.footer}>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Loading',
-          { phoneNumber: this.state.phoneNumber, password: this.state.password, type: "login"})}>
+          <TouchableOpacity style={styles.button} onPress={() => this.login()}>
           {/* 로그인 버튼 클릭 시 로딩화면으로 이동, TextInput에서 입력받은 전화번호와 패스워드도 함께 전달*/}
             <Text>로그인</Text>
           </TouchableOpacity>

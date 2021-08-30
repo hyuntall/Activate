@@ -9,7 +9,7 @@ import { DeviceMotion } from 'expo-sensors';
 export default class Main extends React.Component{
   constructor(props){
     super(props)
-    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: "0"};
+    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: "0", buttonAble: true};
     //url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
   }
   
@@ -31,7 +31,7 @@ export default class Main extends React.Component{
     this.setState({latitude: String(location['coords']['latitude']), 
     longitude: String(location['coords']['longitude'])});
     //받아온 위치 정보 새로 세팅
-    this.setState({text: "성공!"});
+    this.setState({text: "성공!", buttonAble: false});
   }
 
   async getLocation(){ // setinterval사용하여 주기적으로 위치 정보 얻어오도록 수정할 계획.
@@ -133,11 +133,14 @@ export default class Main extends React.Component{
       <Text style={styles.paragraph}>{phoneNumber}</Text>
       <Text style={styles.paragraph}>나이 : </Text>
       <Text style={styles.paragraph}>성별 : </Text>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(phoneNumber)} >
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(phoneNumber)} disabled={this.state.buttonAble}>
         <Text style={styles.buttonText}>불안모드</Text>
       </TouchableOpacity>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >
         <Text style={styles.buttonText}>신호 중지</Text>
+      </TouchableOpacity>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Category')} >
+        <Text style={styles.buttonText}>이전</Text>
       </TouchableOpacity>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Start')} >
         <Text style={styles.buttonText}>로그아웃</Text>

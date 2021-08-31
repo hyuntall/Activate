@@ -15,7 +15,7 @@ class ScrollBox extends Component{
     }
 
     date(timestamp){
-        timestamp = parseFloat(timestamp) * 1000
+        timestamp = timestamp * 1000
         const date = new Date(timestamp)
         var year = date.getFullYear().toString()
         var month = (date.getMonth()+1).toString()
@@ -34,7 +34,7 @@ class ScrollBox extends Component{
         const apiData = this.props.data;
         const text = apiData && apiData.map((item) =>
             <>
-                <div style={largeText}>{this.date(item['time'])}에 불안 신호가 감지되었습니다.</div>
+                <div style={largeText}>{this.date(item['timestamp'])}에 {(item['danger']=='0'?"불안":"위험")}신호가 감지되었습니다.</div>
                 <div style={smallText}>{item['latitude']}, {item['longitude']}</div>
             </>
         );

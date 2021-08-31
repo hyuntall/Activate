@@ -57,6 +57,7 @@ export class MapAPI extends Component {
     
   render() {
     //const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
+    console.log(this.state.apiData)
     const display = this.state.apiData && this.state.apiData.map((item) => 
 
     <Marker 
@@ -65,7 +66,7 @@ export class MapAPI extends Component {
     danger = {item["danger"]}
     onClick={this.onMarkerClick}
     key={item["timestamp"]} width='60px'
-    icon={{ url: require("./장희선.png").default,
+    icon={{ url: require(item['danger']=='0'? "./bonobono.png":"./장희선.png").default,
      scaledSize: new window.google.maps.Size(30, 30) }}
     position={{lat : parseFloat(item['latitude']), 
     lng: parseFloat(item['longitude'])}}/>

@@ -4,15 +4,21 @@ import { Alert } from "react-native";
 import * as Location from 'expo-location';
 import axios from 'axios';
 import { DeviceMotion } from 'expo-sensors';
-
+import UserData from './UserData'
 
 export default class Main extends React.Component{
   constructor(props){
     super(props)
-    this.state = {latitude: null, longitude: null, text: "위치 권한 받아오는 중...", danger: "0", buttonAble: true};
-    //url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
+    this.state = {
+      latitude: null, 
+      longitude: null, 
+      text: "위치 권한 받아오는 중...", 
+      danger: "0", 
+      buttonAble: true,
+    };
   }
-  
+  url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
+
   async componentDidMount() { //컴포넌트가 시작되면 안에 함수를 호출한다는 뜻
     let { motion } = await DeviceMotion.isAvailableAsync()
     //디바이스 모션 사용 권한 받아온다.
@@ -53,23 +59,24 @@ export default class Main extends React.Component{
 
   // dynamoDB로 데이터를 전송하는 함수
   async signalMode(phoneNumber){
-    let data = {
-      "phoneNumber": phoneNumber,
-      "age": "24",
-      "gender": "M",
-      "latitude": this.state.latitude,
-      "longitude": this.state.longitude,
-      "danger": this.state.danger
-    };
+    let data ={
+      "phoneNumber": UserData.phoneNumber,
+        "birthDay": UserData.birthDay,
+        "gender": UserData.gender,
+        "latitude": this.state.latitude,
+        "longitude": this.state.longitude,
+        "danger": this.state.danger
+    }
+    console.log("엥", data)
     this.setState({text: "위치 정보 받아오는 중..."});
     if(this.getLocation()){ //getLocation함수에서 성공적으로 위치 정보를 받아 왔다면
       //전송할 데이터, 휴대폰번호, 나이, 성별 등은 로그인하면 바뀔수 있게 나중에 변수로 설정하자.
-      data.latitude = this.state.latitude;
-      data.longitude = this.state.longitude;
+      //data.latitude = this.state.latitude;
+      //data.longitude = this.state.longitude;
       try{
         this.setState({text: "데이터 전송하는 중..."});
         //api에 post 요청.(데이터 전송한다는 의미)
-        const response = await axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        const response = await axios.post(this.url, data);
         console.log(response)
         this.setState({text: "불안모드 활성화!"});
       } catch (e){
@@ -83,8 +90,10 @@ export default class Main extends React.Component{
       if(listener.acceleration.z > 20){
         console.log("z축 흔들림 감지!");
         this.setState({danger: "1", text: "충격감지!"});
-        data.danger = this.state.danger;
+        data['danger'] = this.state.danger
+        //this.data.danger = this.state.danger;
         this.timeout = setTimeout(() =>{
+          console.log(data)
           this.postDanger(data);
           }, 10000);
         Alert.alert(
@@ -98,8 +107,7 @@ export default class Main extends React.Component{
             {
               text: "취소",
               onPress: () => {clearTimeout(this.timeout),
-                this.setState({danger: "1", text: "충격감지!"}),
-                data.danger = this.state.danger}
+                this.setState({danger: "0", text: "충격 감지중"})}
             }
           ]
         )
@@ -111,29 +119,25 @@ export default class Main extends React.Component{
 
   postDanger(data){
         console.log("data", data);
-        const response2 = axios.post('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1', data);
+        const response2 = axios.post(this.url, data);
         console.log(response2);
   }
 
   removeSignal(){
     DeviceMotion.removeAllListeners();
-    this.setState({danger: 0, text: "일반모드"});
+    this.setState({danger: "0", text: "일반모드"});
   }
 
   render(){
-    
-    const { navigation } = this.props;
-    const phoneNumber = navigation.getParam("phoneNumber");
-    console.log(phoneNumber)
     return (
       <View style={styles.container}>
       <Text style={styles.title}>{this.state.text}</Text>
       <Text style={styles.paragraph}>{this.state.latitude}</Text>
       <Text style={styles.paragraph}>{this.state.longitude}</Text>
-      <Text style={styles.paragraph}>{phoneNumber}</Text>
-      <Text style={styles.paragraph}>나이 : </Text>
-      <Text style={styles.paragraph}>성별 : </Text>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(phoneNumber)} disabled={this.state.buttonAble}>
+      <Text style={styles.paragraph}>{UserData.phoneNumber}</Text>
+      <Text style={styles.paragraph}>생년월일 : {UserData.birthDay}</Text>
+      <Text style={styles.paragraph}>성별 : {UserData.gender}</Text>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(UserData.phoneNumber)} disabled={this.state.buttonAble}>
         <Text style={styles.buttonText}>불안모드</Text>
       </TouchableOpacity>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >

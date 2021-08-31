@@ -19,6 +19,10 @@ export default class SignUp extends React.Component{
     phoneNumber: "",
     password: "",
     confirmPass: "",
+    name: "",
+    gender: "",
+    birthDay: "",
+    otherPhoneNumber: "",
     hide: true,
   };
 
@@ -51,7 +55,11 @@ export default class SignUp extends React.Component{
     try{ //입력한 전화번호에 해당하는 패스워드를 TextInput에서 입력한 패스워드로 설정
       fireDB().ref('user/' + this.state.phoneNumber).set(
         {
-          password: this.state.password
+          password: this.state.password,
+          name: this.state.name,
+          gender: this.state.gender,
+          birthDay: this.state.birthDay,
+          otherPhoneNumber: this.state.otherPhoneNumber
         }
       );
       alert("계정이 생성되었습니다.");
@@ -102,12 +110,20 @@ export default class SignUp extends React.Component{
         <View style={styles.title}></View>
         <View style={styles.content}>
           <Ionicons name="person-circle-outline" size={25} color="black" />
-          <TextInput style={styles.textInput} placeholder="Name"/>
-          <TextInput style={styles.textInput} placeholder="Gender"/>
+          <TextInput style={styles.textInput} placeholder="Name"
+          onChangeText={name => this.setState({name})}
+          value={this.state.name}/>
+          <TextInput style={styles.textInput} placeholder="Gender"
+          onChangeText={gender => this.setState({gender})}
+          value={this.state.gender}/>
           <FontAwesome name="birthday-cake" size={24} color="black" />
-          <TextInput style={styles.textInput} placeholder="Birth Day"/>
+          <TextInput style={styles.textInput} placeholder="Birth Day"
+          onChangeText={birthDay => this.setState({birthDay})}
+          value={this.state.birthDay}/>
           <Feather name="phone" size={24} color="black" />
-          <TextInput style={styles.textInput} placeholder="보호자 번호"/>
+          <TextInput style={styles.textInput} placeholder="비상 연락망"
+          onChangeText={otherPhoneNumber => this.setState({otherPhoneNumber})}
+          value={this.state.otherPhoneNumber}/>
           </View>
         <View style={styles.footer}>
           <TouchableOpacity style={styles.button} onPress={this.confirmPassword}>

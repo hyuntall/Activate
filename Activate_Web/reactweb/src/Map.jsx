@@ -10,7 +10,8 @@ export class MapAPI extends Component {
     selectedPlace: {},
     showingInfoWindow: false,
     apiData: null,
-    danger: 0
+    danger: 0,
+    recentLocation: { lat: 37.5, lng: 127 }
   };
   
   onMarkerClick = (props, marker) =>
@@ -52,24 +53,29 @@ export class MapAPI extends Component {
 
     a = setInterval(() => { //일단 이름은 대충 a 라 지었고, 10초 주기로 getAPI 함수를 호출
       this.getAPI();
-      console.log(this.state.danger)
+      //console.log(this.state.danger)
     }, 10000);
     
   render() {
     //const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
-    console.log(this.state.apiData)
+    //console.log(this.state.apiData)
+    this.state.apiData && this.state.apiData.map((recentData) =>{
+      this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
+      //console.log(this.state.recentLocation)
+    }
+    )
+    //this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
     const display = this.state.apiData && this.state.apiData.map((item) => 
-
     <Marker 
-    phoneNumber = {item["phoneNumber"]}
-    age = {item["age"]}
-    danger = {item["danger"]}
-    onClick={this.onMarkerClick}
-    key={item["timestamp"]} width='60px'
-    icon={{ url: require(item['danger']=='0'? "./bonobono.png":"./장희선.png").default,
-     scaledSize: new window.google.maps.Size(30, 30) }}
-    position={{lat : parseFloat(item['latitude']), 
-    lng: parseFloat(item['longitude'])}}/>
+      phoneNumber = {item["phoneNumber"]}
+      age = {item["birthDay"]}
+      danger = {item["danger"]}
+      onClick={this.onMarkerClick}
+      key={item["timestamp"]} width='60px'
+      icon={{ url: require(item['danger']=='0'? "./bonobono.png":"./장희선.png").default,
+      scaledSize: new window.google.maps.Size(30, 30) }}
+      position={{lat : parseFloat(item['latitude']), 
+      lng: parseFloat(item['longitude'])}}/>
     );
     //display함수 //일단 고유 키는 대충 아무거나 집어 넣었음
     // apiData의 요소 하나하나 반복, 각각의 위치값만 가져와서 Marker 생성
@@ -92,7 +98,8 @@ export class MapAPI extends Component {
           onClick={this.onMapClicked}
           google={this.props.google}
           style={mapStyles}
-          initialCenter={{ lat: 37.5, lng: 127 }}
+          initialCenter={this.state.recentLocation}
+          center={this.state.recentLocation}
           zoom={15}
 
         >

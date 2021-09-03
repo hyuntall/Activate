@@ -135,32 +135,16 @@ export default class Main extends React.Component{
   }
 
   render(){
-    console.log(this.state.signalMode)
     return (
       <View style={styles.container}>
+        <Image source={require('./assets/siren.png')}/>
       <View style={styles.title}>
-        <Entypo name="menu" size={24} color="black" />
-        
-        <Toggle/>
-        </View>
-      <Text style={styles.paragraph}>{this.state.latitude}</Text>
-      <Text style={styles.paragraph}>{this.state.longitude}</Text>
-      <Text style={styles.paragraph}>{UserData.phoneNumber}</Text>
-      <Text style={styles.paragraph}>생년월일 : {UserData.birthDay}</Text>
-      <Text style={styles.paragraph}>성별 : {UserData.gender}</Text>
+        <Text>{this.state.text}</Text>
+      </View>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
         <Text style={styles.buttonText}>{this.state.signalMode == false ? "불안모드" : "신호중지"}</Text>
       </TouchableOpacity>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >
-        <Text style={styles.buttonText}>신호 중지</Text>
-      </TouchableOpacity>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Category')} >
-        <Text style={styles.buttonText}>이전</Text>
-      </TouchableOpacity>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Start')} >
-        <Text style={styles.buttonText}>로그아웃</Text>
-      </TouchableOpacity>
-      <Entypo name="back" size={24} color="black" />
+      <Entypo name="back" size={60} color="black" onPress={() => this.props.navigation.navigate('Category')}/>
     </View>
     
     )

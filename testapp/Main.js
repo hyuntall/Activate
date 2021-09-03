@@ -7,6 +7,7 @@ import { DeviceMotion } from 'expo-sensors';
 import UserData from './UserData'
 import { Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import Toggle from './Toggle.js';
 
 export default class Main extends React.Component{
   constructor(props){
@@ -134,7 +135,8 @@ export default class Main extends React.Component{
       <View style={styles.container}>
       <View style={styles.title}>
         <Entypo name="menu" size={24} color="black" />
-        <Image source={require('siren.png')} />
+        
+        <Toggle/>
         </View>
       <Text style={styles.paragraph}>{this.state.latitude}</Text>
       <Text style={styles.paragraph}>{this.state.longitude}</Text>
@@ -155,45 +157,10 @@ export default class Main extends React.Component{
       </TouchableOpacity>
       <Entypo name="back" size={24} color="black" />
     </View>
+    
     )
   }
-}
-
-
-class Toggle extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
-
-    this.handleClink = this.handleClink.bind(this);
-  }
-  //onPress: () => {clearTimeout(this.timeout),
-  //this.setState({danger: "0", text: "충격 감지중"})}
-  //handleClink() {//목적이 무엇?
-  //  this.setState(this.state => ({
-  //    isToggleOn: !this.state.isToggleOn
-  //  }));
-  //}
-  handleClick(){
-    this.state.isToggleOn == true ? this.setState({isToggleOn: false}): this.setState({isToggleOn: true})
-  }
-
-  render(){
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.inToggleOn ? 'ON' : 'OFF'}
-      </button>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Toggle/>,
-  document.getElementById('root')
-);
-
-export default Toggle;
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -17,6 +17,7 @@ export default class Main extends React.Component{
       longitude: null, 
       danger: "0", 
       buttonAble: true,
+      signalMode: false,
     };
   }
   url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
@@ -61,8 +62,10 @@ export default class Main extends React.Component{
 
   // dynamoDB로 데이터를 전송하는 함수
   async signalMode(phoneNumber){
+    this.setState({signalMode : true})
     let data ={
       "phoneNumber": UserData.phoneNumber,
+      "name": UserData.name,
         "birthDay": UserData.birthDay,
         "gender": UserData.gender,
         "latitude": this.state.latitude,
@@ -126,11 +129,13 @@ export default class Main extends React.Component{
   }
 
   removeSignal(){
+    this.setState({signalMode : false})
     DeviceMotion.removeAllListeners();
     this.setState({danger: "0", text: "일반모드"});
   }
 
   render(){
+    console.log(this.state.signalMode)
     return (
       <View style={styles.container}>
       <View style={styles.title}>
@@ -143,8 +148,8 @@ export default class Main extends React.Component{
       <Text style={styles.paragraph}>{UserData.phoneNumber}</Text>
       <Text style={styles.paragraph}>생년월일 : {UserData.birthDay}</Text>
       <Text style={styles.paragraph}>성별 : {UserData.gender}</Text>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.signalMode(UserData.phoneNumber)} disabled={this.state.buttonAble}>
-        <Text style={styles.buttonText}>불안모드</Text>
+      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
+        <Text style={styles.buttonText}>{this.state.signalMode == false ? "불안모드" : "신호중지"}</Text>
       </TouchableOpacity>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.removeSignal()} >
         <Text style={styles.buttonText}>신호 중지</Text>

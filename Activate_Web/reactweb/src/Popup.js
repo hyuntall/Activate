@@ -15,7 +15,7 @@ class Popup extends Component {
         this.openPopup = this.openPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
     }
- 
+
     openPopup(){
         this.setState({
             isOpenPopup: true,
@@ -27,24 +27,25 @@ class Popup extends Component {
             isOpenPopup: false,
         })
     }
+    
     render(){
-        return (    
-                <div>
-                     <h2>Open Popup</h2>
-                <div>
-                    <button type="button"
-                            id="popupDom"
-                            onClick={this.openPopup}
-                    >
-                        Click
-                    </button>
-                    
+        
+        return (  
+            <div>
+            <h2>Open Popup</h2>
+       <div>
+           <button type="button"
+                   id="popupDom"
+                   onClick={this.openPopup}
+           >
+               Click
+           </button>  
+             
                     {this.state.isOpenPopup && 
                         <PopupDom>
                             <PopupContent onClose={this.closePopup}/>
                         </PopupDom>
                         }
-                
                 </div>
                 </div>
             

@@ -8,6 +8,9 @@ import {
 }from 'react-router-dom';
 import Popup from "./Popup.js"
 
+
+import './index.css';
+
 //GoogleMap 호출할 때 props로 GetData.js의 리턴값을 넣어줬음
 function App() {
   return (
@@ -18,8 +21,11 @@ function App() {
         
         <Route path="/" exact>
           <div> 
-            <img id="logo" src="/img/our.jpg" width="190" height="256"/>
-            
+            <p id = "pstyle">다운로드 하러가기 ↓</p>
+            <img id="logo" src="/img/다운로드배너.png" width="1750" height="360"/>
+          </div>
+          <div>
+            <p></p>
           </div>
         </Route>
 

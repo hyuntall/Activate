@@ -5,6 +5,15 @@
   margin-top: 80px;
 }
 
+#pstyle {
+  font-size : 14px;
+  color: #000000;
+  position : relative;
+  margin-top : 500px;
+  left : 500;
+  text-align: center;
+}
+
 .dimmed_layer_wrapper .full_layer {
   overflow:hidden;
   position:fixed;

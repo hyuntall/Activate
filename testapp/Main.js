@@ -5,6 +5,8 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 import { DeviceMotion } from 'expo-sensors';
 import UserData from './UserData'
+import { Image } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 export default class Main extends React.Component{
   constructor(props){
@@ -12,7 +14,6 @@ export default class Main extends React.Component{
     this.state = {
       latitude: null, 
       longitude: null, 
-      text: "위치 권한 받아오는 중...", 
       danger: "0", 
       buttonAble: true,
     };
@@ -131,7 +132,10 @@ export default class Main extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-      <Text style={styles.title}>{this.state.text}</Text>
+      <View style={styles.title}>
+        <Entypo name="menu" size={24} color="black" />
+        <Image source={require('siren.png')} />
+        </View>
       <Text style={styles.paragraph}>{this.state.latitude}</Text>
       <Text style={styles.paragraph}>{this.state.longitude}</Text>
       <Text style={styles.paragraph}>{UserData.phoneNumber}</Text>
@@ -149,10 +153,47 @@ export default class Main extends React.Component{
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.props.navigation.navigate('Start')} >
         <Text style={styles.buttonText}>로그아웃</Text>
       </TouchableOpacity>
+      <Entypo name="back" size={24} color="black" />
     </View>
     )
   }
 }
+
+
+class Toggle extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    this.handleClink = this.handleClink.bind(this);
+  }
+  //onPress: () => {clearTimeout(this.timeout),
+  //this.setState({danger: "0", text: "충격 감지중"})}
+  //handleClink() {//목적이 무엇?
+  //  this.setState(this.state => ({
+  //    isToggleOn: !this.state.isToggleOn
+  //  }));
+  //}
+  handleClick(){
+    this.state.isToggleOn == true ? this.setState({isToggleOn: false}): this.setState({isToggleOn: true})
+  }
+
+  render(){
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.inToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Toggle/>,
+  document.getElementById('root')
+);
+
+export default Toggle;
 
 const styles = StyleSheet.create({
   container: {
@@ -172,7 +213,7 @@ const styles = StyleSheet.create({
   button: {
     width: 200,
     height: 80,
-    backgroundColor: "#123abc",
+    backgroundColor: "#FFFF6C",
     borderRadius: 4.5,
     justifyContent: "center",
     alignItems: "center",

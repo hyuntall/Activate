@@ -3,14 +3,15 @@ import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
 import Popup from './Popup.js'
 import ScrollBox from "./ScrollBox.js";
-
+import PopupContent from "./PopupContent.js";
+import PopupDom from "./PopupDom.js";
 export class MapAPI extends Component {
   state = {
     activeMarker: {},
     selectedPlace: {},
     showingInfoWindow: false,
     apiData: null,
-    danger: 0,
+    danger: false,
     recentLocation: { lat: 37.5, lng: 127 }
   };
   
@@ -54,16 +55,19 @@ export class MapAPI extends Component {
     a = setInterval(() => { //일단 이름은 대충 a 라 지었고, 10초 주기로 getAPI 함수를 호출
       this.getAPI();
       //console.log(this.state.danger)
+      //alert("ㅎㅇ")
     }, 10000);
     
   render() {
     //const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
     //console.log(this.state.apiData)
+    var pop = false
     this.state.apiData && this.state.apiData.map((recentData) =>{
       this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
-      //console.log(this.state.recentLocation)
-    }
-    )
+      if(recentData['danger']=='1'){
+        pop = true
+      }
+    })
     //this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
     const display = this.state.apiData && this.state.apiData.map((item) => 
     <Marker 
@@ -120,7 +124,7 @@ export class MapAPI extends Component {
           </InfoWindow>
         </Map>
         <ScrollBox data={this.state.apiData}/>
-        <Popup data={this.state.apiData}/>
+        {pop && <PopupContent onClose={this.closePopup}/>}
 
       </div>
     );

@@ -138,9 +138,9 @@ export default class Main extends React.Component{
     return (
       <View style={styles.container}>
         <Image source={require('./assets/siren.png')}/>
-      <View style={styles.title}>
-        <Text>{this.state.text}</Text>
-      </View>
+        <View style={styles.title}>
+          <Text>{this.state.text}</Text>
+        </View>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
         <Text style={styles.buttonText}>{this.state.signalMode == false ? "불안모드" : "신호중지"}</Text>
       </TouchableOpacity>

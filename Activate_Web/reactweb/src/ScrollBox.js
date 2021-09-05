@@ -33,10 +33,12 @@ class ScrollBox extends Component{
         }
         const apiData = this.props.data;
         const text = apiData && apiData.map((item) =>
-            <>
+            <div style={{background: 'white'}}>
                 <div style={largeText}>{this.date(item['timestamp'])}에 {(item['danger']=='0'?"불안":"위험")}신호가 감지되었습니다.</div>
-                <div style={smallText}>{item['latitude']}, {item['longitude']}</div>
-            </>
+                <div style={smallText}>{item['birthDay']} {item['gender']}</div>
+                <div style={smallText}>lat: {item['latitude']}</div>
+                <div style={smallText}>lng: {item['longitude']}</div>
+            </div>
         );
         const style={
             border: '1px solid black',
@@ -49,7 +51,7 @@ class ScrollBox extends Component{
 
         const innerStyle={
             width: '100%',
-            height: '650px',
+            height: '100%',
             background: 'white',
             color: 'black'
         }

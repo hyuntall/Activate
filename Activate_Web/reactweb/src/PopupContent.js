@@ -8,9 +8,6 @@ class PopupContent extends Component {
                     <div className="common_alert"> 
                         <h2>위험신호가 감지되었습니다 !</h2>
                         <div>
-                            <p>
-                                ㅎㅇㅎㅇㅎㅇ
-                            </p>
                         </div>
                         <div>
                             <button type="button" onClick={this.props.onClose}>닫기</button>

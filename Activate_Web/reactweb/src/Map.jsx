@@ -1,17 +1,17 @@
 import React, {Component} from "react";
 import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
-import Popup from './Popup.js'
 import ScrollBox from "./ScrollBox.js";
 import PopupContent from "./PopupContent.js";
-import PopupDom from "./PopupDom.js";
 export class MapAPI extends Component {
+  closePopup = this.closePop.bind(this)
   state = {
     activeMarker: {},
     selectedPlace: {},
     showingInfoWindow: false,
     apiData: null,
     danger: false,
+    dangerTime: null,
     recentLocation: { lat: 37.5, lng: 127 }
   };
   
@@ -46,7 +46,15 @@ export class MapAPI extends Component {
         );
         //console.log(response.data)
         this.setState({apiData: response.data}); //받아온 데이터를 state 내의 apiData로 설정
-        
+        this.state.apiData && this.state.apiData.map((recentData) =>{
+          this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
+          if(recentData['danger'] == '1'){
+            this.setState({danger: true})
+            this.setState({dangerTime: recentData['timestamp']})
+          }else{
+            this.setState({danger: false})
+          }
+        });
       } catch (e) {
         console.log(e);
       }
@@ -58,17 +66,17 @@ export class MapAPI extends Component {
       //alert("ㅎㅇ")
     }, 10000);
     
+    closePop(){
+      this.setState({danger: false})
+      const data = {"date": "X", "timestamp": this.state.dangerTime}
+      console.log(data)
+      const g = axios.put('https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/update/act1',
+      data);
+      console.log(g)
+    }
   render() {
     //const {apiData} = this.props; // GetData 컴포넌트의 리턴값인 apiData를 props로 받음 apiData는 배열 형식임
     //console.log(this.state.apiData)
-    var pop = false
-    this.state.apiData && this.state.apiData.map((recentData) =>{
-      this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
-      if(recentData['danger']=='1'){
-        pop = true
-      }
-    })
-    //this.state.recentLocation = { lat: recentData['latitude'], lng: recentData['longitude']}
     const display = this.state.apiData && this.state.apiData.map((item) => 
     <Marker 
       phoneNumber = {item["phoneNumber"]}
@@ -93,7 +101,6 @@ export class MapAPI extends Component {
       width: '100%',
       height: '50%',
     };
-    
     //구글맵 태그 사이에 display 함수 넣어줌
     return (
       <div className='MapAPI'>
@@ -124,8 +131,7 @@ export class MapAPI extends Component {
           </InfoWindow>
         </Map>
         <ScrollBox data={this.state.apiData}/>
-        {pop && <PopupContent onClose={this.closePopup}/>}
-
+        {this.state.danger&&<PopupContent onClose={this.closePopup}/>}
       </div>
     );
   }

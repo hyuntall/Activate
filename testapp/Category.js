@@ -1,6 +1,7 @@
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import { Image } from 'react-native';
 import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class Category extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class Category extends React.Component {
           {/* 불안신호 보내러 가기*/}
             <Text>불안신호</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button2}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button2} onPress={() => this.props.navigation.navigate('Post')}>
             {/*환경사진 찍으러 가기*/}
             <Text>환경 건의</Text>
           </TouchableOpacity>
@@ -28,9 +29,8 @@ export default class Category extends React.Component {
             {/*내 프로필 정보 변경*/}
             <Text>내 정보</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button5}>
-            {/*어플 설정*/}
-            <Text>어플 설정</Text>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button5} onPress={() => this.props.navigation.navigate('Start')}>
+          <Text>로그아웃</Text>
           </TouchableOpacity>
           </View>
           <View style={styles.footer}></View>
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   button1:{
-    width: '26%',
-    height:'14%',
+    width: '24%',
+    height:'13%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom : 30,
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFF6C',
 },
   button2:{
-    width: '26%',
-    height:'14%',
+    width: '24%',
+    height:'13%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom : 30,
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFF6C',
 },
   button3:{
-    width: '26%',
-    height:'14%',
+    width: '24%',
+    height:'13%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom : 30,
@@ -90,26 +90,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFF6C',
   },
   button4:{
-    width: '26%',
-    height:'14%',
+    width: '24%',
+    height:'13%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom : 30,
     borderRadius: 50,
     backgroundColor: '#FFFF6C',
 },
-  button5:{
+   button5:{
     width: '26%',
-    height:'14%',
+    height:'16%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom : 30,
     borderRadius: 50,
-    backgroundColor: '#FFFF6C',
-  },
+    backgroundColor: '#FFFFFF',
+},
   footer: {
     width: '100%',
-    height: '10%',
+    height: '20%',
     backgroundColor: "#FFFFFF",
     },  
   })

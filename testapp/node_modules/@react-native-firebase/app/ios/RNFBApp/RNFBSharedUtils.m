@@ -16,6 +16,9 @@
  */
 
 #import "RNFBSharedUtils.h"
+#import "RNFBJSON.h"
+#import "RNFBMeta.h"
+#import "RNFBPreferences.h"
 #import "RNFBRCTEventEmitter.h"
 
 #pragma mark -
@@ -69,7 +72,8 @@ static NSString *const RNFBErrorDomain = @"RNFBErrorDomain";
   return firAppDictionary;
 }
 
-+ (void)rejectPromiseWithExceptionDict:(RCTPromiseRejectBlock)reject exception:(NSException *)exception {
++ (void)rejectPromiseWithExceptionDict:(RCTPromiseRejectBlock)reject
+                             exception:(NSException *)exception {
   NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
 
   [userInfo setValue:@(YES) forKey:@"fatal"];
@@ -92,11 +96,14 @@ static NSString *const RNFBErrorDomain = @"RNFBErrorDomain";
   [userInfo setValue:@(error.code) forKey:@"nativeErrorCode"];
   [userInfo setValue:error.localizedDescription forKey:@"nativeErrorMessage"];
 
-  NSError *newErrorWithUserInfo = [NSError errorWithDomain:RNFBErrorDomain code:666 userInfo:userInfo];
+  NSError *newErrorWithUserInfo = [NSError errorWithDomain:RNFBErrorDomain
+                                                      code:666
+                                                  userInfo:userInfo];
   reject(@"unknown", error.localizedDescription, newErrorWithUserInfo);
 }
 
-+ (void)rejectPromiseWithUserInfo:(RCTPromiseRejectBlock)reject userInfo:(NSMutableDictionary *)userInfo {
++ (void)rejectPromiseWithUserInfo:(RCTPromiseRejectBlock)reject
+                         userInfo:(NSMutableDictionary *)userInfo {
   NSError *error = [NSError errorWithDomain:RNFBErrorDomain code:666 userInfo:userInfo];
   reject(userInfo[@"code"], userInfo[@"message"], error);
 }
@@ -121,6 +128,38 @@ static NSString *const RNFBErrorDomain = @"RNFBErrorDomain";
   NSString *iso8601String = [formatter stringFromDate:date];
 
   return [iso8601String stringByAppendingString:@"Z"];
+}
+
++ (BOOL)configContains:(NSString *)key {
+  return [[RNFBPreferences shared] contains:key] || [[RNFBJSON shared] contains:key] ||
+         [RNFBMeta contains:key];
+}
+
++ (BOOL)getConfigBooleanValue:(NSString *)tag key:(NSString *)key defaultValue:(BOOL)defaultValue {
+  BOOL enabled;
+
+  if ([[RNFBPreferences shared] contains:key]) {
+    enabled = [[RNFBPreferences shared] getBooleanValue:key defaultValue:defaultValue];
+    DLog(@"%@ %@ via "
+         @"RNFBPreferences: %d",
+         tag, key, enabled);
+  } else if ([[RNFBJSON shared] contains:key]) {
+    enabled = [[RNFBJSON shared] getBooleanValue:key defaultValue:defaultValue];
+    DLog(@"%@ %@ via "
+         @"RNFBJSON: %d",
+         tag, key, enabled);
+  } else {
+    // Note that if we're here, and the key is not set on the app's bundle, our final default is the
+    // one passed in
+    enabled = [RNFBMeta getBooleanValue:key defaultValue:defaultValue];
+    DLog(@"%@ %@ via "
+         @"RNFBMeta: %d",
+         tag, key, enabled);
+  }
+
+  DLog(@"%@ %@ final value: %d", tag, key, enabled);
+
+  return enabled;
 }
 
 @end

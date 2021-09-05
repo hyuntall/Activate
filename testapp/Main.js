@@ -6,7 +6,7 @@ import axios from 'axios';
 import { DeviceMotion } from 'expo-sensors';
 import UserData from './UserData'
 import { Image } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import Toggle from './Toggle.js';
 
 export default class Main extends React.Component{
@@ -18,6 +18,7 @@ export default class Main extends React.Component{
       danger: "0", 
       buttonAble: true,
       signalMode: false,
+      image: "./assets/siren.png"
     };
   }
   url = 'https://3lonbz1xr9.execute-api.ap-northeast-2.amazonaws.com/post/act1'
@@ -62,7 +63,7 @@ export default class Main extends React.Component{
 
   // dynamoDB로 데이터를 전송하는 함수
   async signalMode(phoneNumber){
-    this.setState({signalMode : true})
+    this.setState({signalMode : true, image: "./assets/행복한동네.png"})
     let data ={
       "phoneNumber": UserData.phoneNumber,
       "name": UserData.name,
@@ -129,24 +130,25 @@ export default class Main extends React.Component{
   }
 
   removeSignal(){
-    this.setState({signalMode : false})
+    this.setState({signalMode : false, image: "./assets/siren.png"})
     DeviceMotion.removeAllListeners();
     this.setState({danger: "0", text: "일반모드"});
   }
 
   render(){
     return (
+      
       <View style={styles.container}>
-        <Image source={require('./assets/siren.png')}/>
+        <Image source={require('./assets/siren.png')}/>  
         <View style={styles.title}>
           <Text>{this.state.text}</Text>
         </View>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
+        {}
         <Text style={styles.buttonText}>{this.state.signalMode == false ? "불안모드" : "신호중지"}</Text>
       </TouchableOpacity>
-      <Entypo name="back" size={60} color="black" onPress={() => this.props.navigation.navigate('Category')}/>
+      <Ionicons name="arrow-back-circle" size={50} color="black" onPress={() => this.props.navigation.navigate('Category')}/>
     </View>
-    
     )
   }
 };
@@ -167,7 +169,7 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   button: {
-    width: 200,
+    width: 250,
     height: 80,
     backgroundColor: "#FFFF6C",
     borderRadius: 4.5,

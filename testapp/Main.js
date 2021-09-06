@@ -7,7 +7,6 @@ import { DeviceMotion } from 'expo-sensors';
 import UserData from './UserData'
 import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Toggle from './Toggle.js';
 
 export default class Main extends React.Component{
   constructor(props){
@@ -137,11 +136,10 @@ export default class Main extends React.Component{
 
   render(){
     return (
-      
       <View style={styles.container}>
-        <Image source={require('./assets/siren.png')}/>  
+        <Image style={styles.image} source={require('./assets/siren.png')}/>
         <View style={styles.title}>
-          <Text>{this.state.text}</Text>
+          <Text style={styles.text}>{this.state.text}</Text>
         </View>
       <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
         {}
@@ -156,7 +154,7 @@ export default class Main extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 3,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffe0',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -164,6 +162,17 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: 'blue'
   },
+  text:{
+    fontSize : 20,
+    marginBottom : 30,
+    color : 'red',
+  },
+  image:{
+    width : 170,
+    height : 170,
+    marginBottom : 50,
+  },
+
   paragraph: {
     fontSize: 30,
     color: 'black'
@@ -175,9 +184,10 @@ const styles = StyleSheet.create({
     borderRadius: 4.5,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom : 30,
   },
   buttonText: {
-    color: "white",
+    color: "black",
     fontSize: 30,
   }
 });

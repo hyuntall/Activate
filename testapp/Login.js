@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     height:'20%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : '#FFFFFF',
+    backgroundColor : '#ffffe0',
   },
   title: {
     flex:1,
@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#FFFFFF',
+    backgroundColor:'#ffffe0',
   },
   content:{
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ffffe0',
   },
   buttonText: {
     color: "white",
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
       footer: {
         width: '100%',
         height: '25%',
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#ffffe0",
     },
       button: {
         flex:1,

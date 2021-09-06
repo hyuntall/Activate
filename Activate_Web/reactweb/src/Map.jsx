@@ -84,7 +84,7 @@ export class MapAPI extends Component {
       danger = {item["danger"]}
       onClick={this.onMarkerClick}
       key={item["timestamp"]} width='60px'
-      icon={{ url: require(item['danger']=='0'? "./bonobono.png":"./장희선.png").default,
+      icon={{ url: require(item['danger']=='0'? "./orange.png":"./red.png").default,
       scaledSize: new window.google.maps.Size(30, 30) }}
       position={{lat : parseFloat(item['latitude']), 
       lng: parseFloat(item['longitude'])}}/>
@@ -99,7 +99,7 @@ export class MapAPI extends Component {
 
     const mapStyles = {
       width: '100%',
-      height: '50%',
+      height: '70%',
     };
     //구글맵 태그 사이에 display 함수 넣어줌
     return (

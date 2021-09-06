@@ -169,20 +169,20 @@ const styles = StyleSheet.create({
     height:'10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : '#F6F6F6',
+    backgroundColor : '#ffffe0',
   },
   title: {
     width:'100%',
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#F6F6F6',
+    backgroundColor:'#ffffe0',
   },
   content:{
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#ffffe0',
   },
   buttonText: {
     color: "white",
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
       footer: {
         width: '100%',
         height: '25%',
-        backgroundColor: "#F6F6F6",
+        backgroundColor: "#ffffe0",
     },
       button: {
         alignItems: 'center',

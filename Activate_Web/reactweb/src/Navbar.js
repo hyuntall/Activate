@@ -5,16 +5,16 @@ const Navbar = () => {
     return(
         <ul class="nav justify-content-center">
   <li class="nav-item">
-    <Link class="nav-link active" aria-current="page" to="/" >Home</Link>
+    <Link class="nav-link active" aria-current="page" to="/" >HOME</Link>
   </li>
   <li class="nav-item">
-    <Link class="nav-link" to="/Safety">Safety</Link>
+    <Link class="nav-link" to="/Safety">SAFETY</Link>
   </li>
   <li class="nav-item">
-    <Link class="nav-link" to="/Environment">Environment</Link>
+    <Link class="nav-link" to="/Environment">ENVIRONMENT</Link>
   </li>
   <li class="nav-item">
-    <Link class="nav-link" to="/contact">contact</Link>
+    <Link class="nav-link" to="/contact">CONTACT</Link>
   </li>
 </ul>
     );

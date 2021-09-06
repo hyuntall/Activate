@@ -92,8 +92,8 @@ export default class Main extends React.Component{
       this.setState({text: "위치 정보 받기 실패"});
     }
     DeviceMotion.addListener((listener) => {
-      if(listener.acceleration.z > 20){
-        console.log("z축 흔들림 감지!");
+      if(listener.acceleration.z > 20 | listener.acceleration.y >20 | listener.acceleration.x > 20){
+        console.log("축 흔들림 감지!");
         this.setState({danger: "1", text: "충격감지!"});
         data['danger'] = this.state.danger
         //this.data.danger = this.state.danger;

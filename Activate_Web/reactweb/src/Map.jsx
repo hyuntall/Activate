@@ -85,7 +85,7 @@ export class MapAPI extends Component {
       onClick={this.onMarkerClick}
       key={item["timestamp"]} width='60px'
       icon={{ url: require(item['danger']=='0'? "./orange.png":"./red.png").default,
-      scaledSize: new window.google.maps.Size(30, 30) }}
+      scaledSize: new window.google.maps.Size(70, 70) }}
       position={{lat : parseFloat(item['latitude']), 
       lng: parseFloat(item['longitude'])}}/>
     );

@@ -3,6 +3,7 @@ import { InfoWindow, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
 import ScrollBox from "./ScrollBox.js";
 import PopupContent from "./PopupContent.js";
+
 export class MapAPI extends Component {
   closePopup = this.closePop.bind(this)
   state = {
@@ -133,6 +134,7 @@ export class MapAPI extends Component {
         <ScrollBox data={this.state.apiData}/>
         {this.state.danger&&<PopupContent onClose={this.closePopup}/>}
       </div>
+      
     );
   }
 }

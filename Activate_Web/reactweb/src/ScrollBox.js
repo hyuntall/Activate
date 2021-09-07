@@ -42,7 +42,7 @@ class ScrollBox extends Component{
         );
         const style={
             border: '1px solid black',
-            height: '548px',
+            height: '670px',
             width: '25%',
             overflow: 'auto',
             position: 'relative',

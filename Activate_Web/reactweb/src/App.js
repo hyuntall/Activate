@@ -49,12 +49,13 @@ function App() {
           <img id="logo" src="/img/our.png" width="800" height="800"/>
           </div>
         </Route>
-        </Switch>
-        <Privacy path="/Privacy" exact>
+        <Route path="/Privacy" exact>
           <div>
             <Privacy/>
           </div>
-        </Privacy>
+        </Route>
+        </Switch>
+        
         </div>
     </Router>
     

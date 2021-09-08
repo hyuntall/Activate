@@ -14,7 +14,7 @@ export default class Login extends React.Component {
             <Text style={styles.text}>로그인</Text>
           </TouchableOpacity>
           <Text activeOpacity={0.8} onPress={() => this.props.navigation.navigate('SignUp')}>  
-            휴대폰번호로 시작하기
+            회원가입
             </Text>
           </View>
           <View style={styles.footer}></View>

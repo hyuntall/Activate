@@ -141,7 +141,7 @@ export default class Main extends React.Component{
         <View style={styles.title}>
           <Text style={styles.text}>{this.state.text}</Text>
         </View>
-      <TouchableOpacity avtiveOpacity={0.8} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
+      <TouchableOpacity avtiveOpacity={1} style={styles.button} onPress={() => this.state.signalMode == false ? this.signalMode(UserData.phoneNumber) : this.removeSignal()} disabled={this.state.buttonAble}>
         {}
         <Text style={styles.buttonText}>{this.state.signalMode == false ? "불안모드" : "신호중지"}</Text>
       </TouchableOpacity>

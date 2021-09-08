@@ -21,9 +21,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/act_icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "activate.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

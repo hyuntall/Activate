@@ -8,6 +8,7 @@ import {
 }from 'react-router-dom';
 import './index.css';
 import Environment from "./Environment";
+import Privacy from "./Privacy";
 
 //GoogleMap 호출할 때 props로 GetData.js의 리턴값을 넣어줬음
 function App() {
@@ -52,8 +53,12 @@ function App() {
           <img id="logo" src="/img/our.png" width="2000" height="800"/>
           </div>
         </Route>
-
         </Switch>
+        <Privacy path="/Privacy" exact>
+          <div>
+            <Privacy/>
+          </div>
+        </Privacy>
         </div>
     </Router>
     

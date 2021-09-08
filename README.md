@@ -49,7 +49,7 @@
 
 
 
-(어플이랑 코드 캡쳐 첨부)
+![postScene](https://user-images.githubusercontent.com/79295851/132520824-0fe8f7e7-90af-4c06-b0a6-da9c6c3dfd27.jpg)
 
 -환경건의 카테고리이다.
 사진을 업로드하여 글과 함께 제보내용을 전달할 수 있도록 하며

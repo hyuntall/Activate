@@ -14,7 +14,7 @@
 
 ## 서비스
 
-https://github.com/hyuntall/Activate/issues/2#issue-991137612
+![아키텍쳐이미지](https://github.com/hyuntall/Activate/issues/2#issue-991137612)
 
 ## 코드
 

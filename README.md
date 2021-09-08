@@ -33,7 +33,7 @@
 
 
 
-(어플이랑 코드 캡쳐 첨부)
+![loginScene](https://user-images.githubusercontent.com/79295851/132524248-ca222d5f-f635-4a0f-9c9a-0b3b7d7bfab7.jpg)
 
 -회원가입 시 입력받은 휴대폰번호와 비밀번호를 통해 로그인할 수 있다.
 

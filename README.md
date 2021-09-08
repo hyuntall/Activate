@@ -63,10 +63,10 @@ TextInput 부분에서 텍스트를 입력받을 수 있고,
 ## 웹 기능과 사용법
 
 
-<img src="https://user-images.githubusercontent.com/79295851/132529906-15d9184d-2dd2-4ff0-b317-bac59c832229.JPG"  width="600" height="300">
+<img src="https://user-images.githubusercontent.com/79295851/132529906-15d9184d-2dd2-4ff0-b317-bac59c832229.JPG"  width="800" height="400">
 
--웹의 상단 로고 밑에 Home, Safety, Environment, Contact의
-4가지 카테고리가 있으며, 그 아래의 이미지들은 모바일 어플에 대한 홍보자료와 다운로드 QR 이미지이다.
+-웹의 상단 로고 밑에 Home, Safety, Environment, Contact의 4가지 카테고리가 있으며, 
+그 아래의 이미지들은 모바일 어플에 대한 홍보자료와 다운로드 QR 이미지이다.
 Safety 카테고리를 클릭 시, 구글 맵에 기반한 지도가 표시된다.
 어플에서 유저가 불안신호를 보낼 시, 이 카테고리에서 마커를 통해 위치를 확인할 수 있다.
 

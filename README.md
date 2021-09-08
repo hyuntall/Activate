@@ -48,7 +48,8 @@
 
 
 
-(           )
+![firebase](https://user-images.githubusercontent.com/79295851/132533081-5af438f0-2917-46f9-80f9-d2a69590fec4.png)
+
 -불안 신호 혹은 위험 신호가 전송되면 AWS의 DynamoDB에 저장된다.
 
 

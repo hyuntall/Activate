@@ -78,7 +78,8 @@ Safety 카테고리를 클릭 시, 구글 맵에 기반한 지도가 표시된�
 
 
 
-(    )
+<img src="https://user-images.githubusercontent.com/79295851/132533409-7a99b250-9ac6-42ae-9484-5c58add2b9e5.png"  width="200" height="100">
+
 -웹에서는 주기적으로 DynamoDB의 데이터를 요청한다.
 -회원가입 시에는 파이어베이스의 리얼타임 데이터베이스에 사용자 정보를 등록한다.
 -로그인 시에는 파이어베이스에서 가져온다.

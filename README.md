@@ -22,7 +22,7 @@
 ## 코드
 
 
-<img src="https://user-images.githubusercontent.com/79295851/132519430-ecb023b8-a1d3-4474-9d9f-c2616e358489.jpg"  width="100" height="200">
+<img src="https://user-images.githubusercontent.com/79295851/132519430-ecb023b8-a1d3-4474-9d9f-c2616e358489.jpg"  width="300" height="600">
 
 -처음 사용할 유저들은 회원가입을 해야한다.
 입력받을 폼의 항목으로는, 휴대폰번호, 비밀번호, 이름, 성별 등이 있다.

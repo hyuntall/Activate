@@ -33,14 +33,14 @@
 
 
 
-![loginScene](https://user-images.githubusercontent.com/79295851/132524248-ca222d5f-f635-4a0f-9c9a-0b3b7d7bfab7.jpg)
+<img src="https://user-images.githubusercontent.com/79295851/132524248-ca222d5f-f635-4a0f-9c9a-0b3b7d7bfab7.jpg"  width="300" height="600">
 
 -회원가입 시 입력받은 휴대폰번호와 비밀번호를 통해 로그인할 수 있다.
 
 
 
 
-![mainScene](https://user-images.githubusercontent.com/79295851/132520731-2c616363-e45d-46e1-aecf-360997c176a6.jpg)
+<img src="https://user-images.githubusercontent.com/79295851/132520731-2c616363-e45d-46e1-aecf-360997c176a6.jpg"  width="300" height="600">
 
 -불안신호 카테고리이다.
 아래의 불안모드 버튼을 눌러서 사용자의 위급 신호를 보낼 수 있다.
@@ -49,7 +49,7 @@
 
 
 
-![postScene](https://user-images.githubusercontent.com/79295851/132520824-0fe8f7e7-90af-4c06-b0a6-da9c6c3dfd27.jpg)
+<img src="https://user-images.githubusercontent.com/79295851/132520824-0fe8f7e7-90af-4c06-b0a6-da9c6c3dfd27.jpg"  width="300" height="600">
 
 -환경건의 카테고리이다.
 사진을 업로드하여 글과 함께 제보내용을 전달할 수 있도록 하며
